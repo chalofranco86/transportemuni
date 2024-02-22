@@ -1,0 +1,81 @@
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>TARJETA PILOTO</h1>
+
+    <div class="float-right">
+        <a href="{{ route('cards.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+            {{ __('Create New') }}
+        </a>
+    </div>
+@stop
+
+@section('content')
+
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nombre Piloto</th>
+            <th>Direccion Piloto</th>
+            <th>Correo Piloto</th>
+            <th>Telefono Piloto</th>
+            <th>Tipo de Licencia</th>
+            <th>Foto Licencia</th>
+            <th>Foto Piloto</th>
+            <th>DPI Piloto</th>
+            <th>Fecha Emision</th>
+            <th>Fecha Vencimiento</th>
+            <th>Antecedentes Penales</th>
+            <th>Antecedentes Policiacos</th>
+            <th>Renas</th>
+            <th>Boleto Ornato</th>
+            <th>Numero Vehiculo Id</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($card as $card)
+            <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $card->nombre_piloto }}</td>
+                <td>{{ $card->direccion_piloto }}</td>
+                <td>{{ $card->correo_piloto }}</td>
+                <td>{{ $card->telefono_piloto }}</td>
+                <td>{{ $card->tipo_licencia }}</td>
+                <td>{{ $card->licencia ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->foto_piloto ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->dpi_piloto ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->fecha_emision }}</td>
+                <td>{{ $card->fecha_vencimiento }}</td>
+                <td>{{ $card->antecedentes_penales ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->antecedentes_policiacos ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->renas ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->boleto_ornato ? 'SI' : 'NO' }}</td>
+                <td>{{ $card->numero_vehiculo_id }}</td>
+
+                <td>
+                    <form action="{{ route('cards.destroy',$card->id) }}" method="POST">
+                        <a class="btn btn-sm btn-primary " href="{{ route('cards.show',$card->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                        <a class="btn btn-sm btn-success" href="{{ route('cards.edit',$card->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $nombre_transporte
  * @property $telefono
  * @property $correo
- * @property $direccion
+ * @property $direccion_fiscal
  * @property $no_vehiculo
  * @property $created_at
  * @property $updated_at
@@ -32,7 +32,7 @@ class Propietario extends Model
 		'nombre_transporte' => 'required',
 		'telefono' => 'required',
 		'correo' => 'required',
-		'direccion' => 'required',
+		'direccion_fiscal' => 'required',
 		'no_vehiculo' => 'required',
     ];
 
@@ -43,7 +43,7 @@ class Propietario extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','dpi','nit','nombre_transporte','telefono','correo','direccion','no_vehiculo'];
+    protected $fillable = ['nombre','dpi','nit','nombre_transporte','telefono','correo','direccion_fiscal','no_vehiculo'];
 
 
 

@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ $propietario->name ?? "{{ __('Show') Propietario" }}
-@endsection
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Editar Propietario</h1>
+@stop
 
 @section('content')
     <section class="content container-fluid">
@@ -11,10 +13,10 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Propietario</span>
+                            <span class="card-title">{{ __('Ver') }} Propietario</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('propietarios.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('propietarios.index') }}"> {{ __('Atras') }}</a>
                         </div>
                     </div>
 
@@ -45,8 +47,8 @@
                             {{ $propietario->correo }}
                         </div>
                         <div class="form-group">
-                            <strong>Direccion:</strong>
-                            {{ $propietario->direccion }}
+                            <strong>Direccion Fiscal:</strong>
+                            {{ $propietario->direccion_fiscal }}
                         </div>
                         <div class="form-group">
                             <strong>No Vehiculo:</strong>
@@ -58,4 +60,13 @@
             </div>
         </div>
     </section>
-@endsection
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('propietario', function (Blueprint $table) {
+        Schema::create('propietarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->integer('dpi');
@@ -21,9 +21,8 @@ return new class extends Migration
             $table->string('nombre_transporte');
             $table->integer('telefono');
             $table->string('correo');
-            $table->string('direccion');
-            $table->integer('no_vehiculo');
-            
+            $table->string('direccion_fiscal');
+            $table->integer('no_vehiculo');    
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propietario');
+        Schema::dropIfExists('propietarios');
     }
 };
