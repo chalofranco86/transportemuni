@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>LISTA VEHICULOS</h1>
+    <h1>LISTA VEHICULOS CREADOS</h1>
     <div class="float-right"></div>
 @stop
 
