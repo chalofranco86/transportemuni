@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportTarjetapilotoController;
 use App\Http\Controllers\ReportCardController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ReporteTarjetapiloto;
+use App\Http\Controllers\RutaController;
 
 
 /*
@@ -28,12 +29,18 @@ Route::get('/', function () {
 Auth::routes();
 /* Route::get('cards/pdf/', [CardController::class, 'pdf'])->name('cards.pdf'); */
 Route::get('cards/pdf/{id}', [CardController::class, 'generatePDF'])->name('cards.pdf');
+Route::get('report/reportvehitable', [VehiController::class, 'generateAllPDF'])->name('report.reportvehitable');
+Route::get('report/reportrutastable', [RutaController::class, 'generateAllRPDF'])->name('report.reportrutastable');
 Route::delete('/propios/{propio}', 'PropioController@destroy')->name('propios.destroy');
 Route::resource('propio', App\Http\Controllers\PropioController::class)->middleware('auth');
+Route::get('/propios', [PropioController::class, 'index'])->name('propios.index');
+Route::patch('/propios/{propio}', 'PropioController@update')->name('propios.update');
 Route::resource('documentos', App\Http\Controllers\DocumentoController::class);
 Route::resource('rutas', App\Http\Controllers\RutaController::class);
 Route::resource('vehis', VehiController::class);
 Route::resource('cards', App\Http\Controllers\CardController::class);
+Route::get('/cards/{card}/edit', 'CardController@edit')->name('cards.edit');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/generate-pdf/tarjetapiloto', [ReporteTarjetapiloto::class, 'generatePDF'])->name('generate-pdf-tarjetapiloto');

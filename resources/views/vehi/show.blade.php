@@ -56,6 +56,7 @@
                         <strong>Numero Ruta Id:</strong>
                         {{ $vehi->numero_ruta_id }}
                     </div>
+
                 </div>
             </div>
         </div>

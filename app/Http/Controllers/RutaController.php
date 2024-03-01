@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ruta;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class RutaController
@@ -24,6 +25,31 @@ class RutaController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $rutas->perPage());
     }
 
+    public function generateAllRPDF()
+    {
+        try {
+            set_time_limit(300); // Set to 5 minutes 
+    
+            // Obtener todos los vehículos
+            $rutas = Ruta::all();
+    
+            // Verificar si hay vehículos
+            if ($rutas->isEmpty()) {
+                return redirect()->route('ruta.index')->with('error', 'No hay vehículos para generar el PDF');
+            }
+    
+            // Cargar la vista con todos los vehículos
+            $pdf = PDF::loadView('report.reportrutastable', compact('rutas'));
+            return $pdf->download('reporterutas.pdf');
+        } catch (\Exception $e) {
+            // Puedes registrar la excepción para una investigación adicional
+            \Log::error($e);
+    
+            // Redireccionar a una página de error
+            return redirect()->route('rutas.index')->with('error', 'Error al generar el PDF: ' . $e->getMessage());
+        }
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

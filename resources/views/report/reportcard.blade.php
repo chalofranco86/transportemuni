@@ -27,9 +27,22 @@
         .photo-container img {
             max-width: 100%;
         }
+
+        /* Estilos para la imagen en la esquina superior derecha */
+        .logo-container {
+            position: absolute;
+            top: 20px; /* Ajusta la posición desde la parte superior */
+            right: 20px; /* Ajusta la posición desde la derecha */
+        }
     </style>
 </head>
 <body>
+
+    <!-- Contenedor para la imagen en la esquina superior derecha -->
+    <div class="logo-container">
+        <img src="{{ public_path('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo" style="width: 100px; height: auto;">
+    </div>
+
     <h1>Tarjeta Piloto</h1>
     
     <div class="photo-container">

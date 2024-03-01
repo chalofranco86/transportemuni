@@ -36,7 +36,7 @@ public function create(Request $request)
     $vehi = Vehi::all(); // Obtén todos los vehículos
 
     // Obtén los vehículos asociados al propietario actual
-    $vehiculosAsociados = $propio->vehi->pluck('id')->all();
+    $vehiculosAsociados = $propio->vehi->pluck('id')->toArray();
 
     return view('propio.create', compact('propio', 'vehi', 'vehiculosAsociados'));
 }
@@ -90,8 +90,7 @@ public function create(Request $request)
     
         // Redirecciona a la vista de índice con un mensaje de éxito
         return redirect()->route('propio.index')->with('success', 'Propio created successfully.');
-    }
-       
+    }  
     
     
     /**
@@ -103,7 +102,10 @@ public function create(Request $request)
     public function show($id)
     {
         $propio = Propio::find($id);
+    
+        // Asegúrate de que $propio no sea null y vehiculos_asociados no esté vacío
         $propio->vehiculos_asociados = json_decode($propio->vehiculos_asociados, true);
+    
         return view('propio.show', compact('propio'));
     }
 
@@ -116,8 +118,12 @@ public function create(Request $request)
     public function edit($id)
     {
         $propio = Propio::find($id);
-
-        return view('propio.edit', compact('propio'));
+        $vehi = Vehi::all();
+    
+        // Obtén los vehículos asociados al propietario actual
+        $vehiculosAsociados = $propio->vehiculos_asociados ? json_decode($propio->vehiculos_asociados) : [];
+    
+        return view('propio.edit', compact('propio', 'vehi', 'vehiculosAsociados'));
     }
 
     /**

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Show Vehi')
+@section('title', 'ShowPropietario')
 
 @section('content_header')
-    <h1>{{ __('Show') }} Vehi</h1>
+    <h1>{{ __('MOSTRAR') }} PROPIETARIO</h1>
 @stop
 
 @section('content')
@@ -12,16 +12,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Propio</span>
-                        </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('propio.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
-                        
                         <div class="form-group">
                             <strong>Nombre Propietario:</strong>
                             {{ $propio->nombre_propietario }}
@@ -51,10 +47,6 @@
                             {{ $propio->direccion_fiscal }}
                         </div>
                         <div class="form-group">
-                            <strong>Numero Vehiculos Asociados:</strong>
-                            {{ $propio->numero_vehiculos_asociados }}
-                        </div>
-                        <div class="form-group">
                             <strong>Vehiculos Asociados:</strong>
                             @if(is_array($propio->vehiculos_asociados))
                                 @foreach ($propio->vehiculos_asociados as $vehi_id)
@@ -73,11 +65,6 @@
                             <strong>Nit Empresa:</strong>
                             {{ $propio->nit_empresa }}
                         </div>
-                        <div class="form-group">
-                            <strong>Vehi Id:</strong>
-                            {{ $propio->vehi_id }}
-                        </div>
-
                     </div>
                 </div>
             </div>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehi;
+use App\Models\Card;
 use Illuminate\Http\Request;
+use PDF;
 
 class VehiController extends Controller
 {
@@ -19,6 +21,32 @@ class VehiController extends Controller
         return view('vehi.index', compact('vehis'))
             ->with('i', (request()->input('page', 1) - 1) * $vehis->perPage());
     }
+
+    public function generateAllPDF()
+    {
+        try {
+            set_time_limit(300); // Set to 5 minutes 
+    
+            // Obtener todos los vehículos
+            $vehis = Vehi::all();
+    
+            // Verificar si hay vehículos
+            if ($vehis->isEmpty()) {
+                return redirect()->route('vehi.index')->with('error', 'No hay vehículos para generar el PDF');
+            }
+    
+            // Cargar la vista con todos los vehículos
+            $pdf = PDF::loadView('report.reportvehitable', compact('vehis'));
+            return $pdf->download('reportevehiculos.pdf');
+        } catch (\Exception $e) {
+            // Puedes registrar la excepción para una investigación adicional
+            \Log::error($e);
+    
+            // Redireccionar a una página de error
+            return redirect()->route('vehis.index')->with('error', 'Error al generar el PDF: ' . $e->getMessage());
+        }
+    }
+    
 
     /**
      * Show the form for creating a new resource.

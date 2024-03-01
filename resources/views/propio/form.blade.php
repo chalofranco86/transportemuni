@@ -48,20 +48,21 @@
             {!! $errors->first('nit_empresa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
+
         <div class="form-group">
             {{ Form::label('numero_vehiculo_id', 'Seleccionar Vehículos') }}
-            {{ Form::select('numero_vehiculo_id[]', $vehi->pluck('nombre_vehi', 'id'), $propio->vehiculos_asociados, ['class' => 'form-control vehiculo-select' . ($errors->has('numero_vehiculo_id') ? ' is-invalid' : ''), 'multiple' => 'multiple']) }}
+            {{ Form::select('numero_vehiculo_id[]', $vehi->pluck('nombre_vehi', 'id'), $propio->vehiculos_asociados, ['class' => 'form-control vehiculo-select', 'multiple' => 'multiple']) }}
             {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-
-<button type="button" class="btn btn-secondary" id="agregarVehiculo">Agregar otro vehículo</button>
+        </div>                                                                                                      
 
         <ul id="selectedVehiclesList">
-            @foreach($vehi as $vehiculo)
-                @if(in_array($vehiculo->id, old('vehi_id', $vehiculosAsociados)))
-                    <li>{{ $vehiculo->nombre_vehi }}</li>
-                @endif
-            @endforeach
+            @if(isset($vehiculosAsociados))
+                @foreach($vehi as $vehiculo)
+                    @if(in_array($vehiculo->id, old('vehi_id', $vehiculosAsociados)))
+                        <li>{{ $vehiculo->nombre_vehi }}</li>
+                    @endif
+                @endforeach
+            @endif
         </ul>
     
 
@@ -82,12 +83,14 @@
             selectedVehiclesList.empty();
 
             // Obtener los vehículos seleccionados
-            var selectedVehicles = $("#vehi_id").val();
+            $(".vehiculo-select").each(function () {
+                var selectedVehicles = $(this).val();
 
-            // Mostrar los vehículos seleccionados en la lista
-            selectedVehicles.forEach(function (vehicleId) {
-                var vehicleName = $("#vehi_id option[value='" + vehicleId + "']").text();
-                selectedVehiclesList.append('<li>' + vehicleName + '</li>');
+                // Mostrar los vehículos seleccionados en la lista
+                selectedVehicles.forEach(function (vehicleId) {
+                    var vehicleName = $(this).find("option[value='" + vehicleId + "']").text();
+                    selectedVehiclesList.append('<li>' + vehicleName + '</li>');
+                }.bind(this)); // Agrega .bind(this) para asegurar que $(this) se refiere al elemento correcto
             });
         }
 
