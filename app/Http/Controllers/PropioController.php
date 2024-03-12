@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Propio;
 use App\Models\Vehi;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class PropioController
@@ -25,6 +26,30 @@ class PropioController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $propios->perPage());
     }
 
+    public function generateAllPDF()
+{
+    try {
+        set_time_limit(300); // Set to 5 minutes 
+
+        // Obtener todos los propios
+        $propios = Propio::all();
+
+        // Verificar si hay propios
+        if ($propios->isEmpty()) {
+            return redirect()->route('propio.index')->with('error', 'No hay propios para generar el PDF');
+        }
+
+        // Cargar la vista con todos los propios
+        $pdf = PDF::loadView('report.reportpropiotable', compact('propios'));
+        return $pdf->download('reportepropios.pdf');
+    } catch (\Exception $e) {
+        // Puedes registrar la excepción para una investigación adicional
+        \Log::error($e);
+
+        // Redireccionar a una página de error
+        return redirect()->route('propios.index')->with('error', 'Error al generar el PDF: ' . $e->getMessage());
+    }
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -62,8 +87,8 @@ public function create(Request $request)
             'numero_vehiculo_id.*' => 'exists:vehi,id',
             'vehi_id' => 'array',
             'vehi_id.*' => 'exists:vehi,id',
-            'nombre_empresa' => 'required',
-            'nit_empresa' => 'required',
+            'nombre_empresa' => 'nullable',
+            'nit_empresa' => 'nullable',
         ]);
     
         // Verifica si se está enviando un archivo para "dpi_propietario"

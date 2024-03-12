@@ -145,8 +145,11 @@ class CardController extends Controller
      */
     public function edit($id)
     {
-        // Encuentra el vehículo por su ID
-        $vehi = Vehi::find($id);
+        // Encuentra la tarjeta por su ID
+        $card = Card::find($id);
+    
+        // Encuentra el vehículo asociado con la tarjeta
+        $vehi = Vehi::pluck('nombre_vehi', 'id'); // Obtén la lista de vehículos
     
         // Verifica si se están enviando nuevos archivos y actualiza las rutas
         if (request()->hasFile('tarjeta_circulacion')) {
@@ -156,8 +159,8 @@ class CardController extends Controller
     
         // Repite el mismo proceso para otros archivos
     
-        // Devuelve la vista de edición con el vehículo
-        return view('vehi.edit', compact('vehi'));
+        // Devuelve la vista de edición con el vehículo y la lista de vehículos
+        return view('card.edit', compact('card', 'vehi'));
     }
 
     /**

@@ -41,12 +41,14 @@
         <div class="form-group">
             {{ Form::label('foto_piloto') }}
             {{ Form::file('foto_piloto', ['class' => 'form-control-file']) }}
+            <p>IMAGEN</p>
             {!! $errors->first('foto_piloto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-        <div class="form-group">
-            {{ Form::label('dpi_piloto') }}
+        <div class="form-group" >
+            {{ Form::label('dpi_piloto')  }}
             {{ Form::file('dpi_piloto', ['class' => 'form-control-file']) }}
+            <p>IMAGEN</p>
             {!! $errors->first('dpi_piloto', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
@@ -64,24 +66,28 @@
         <div class="form-group">
             {{ Form::label('antecedentes_penales') }}
             {{ Form::file('antecedentes_penales', ['class' => 'form-control-file']) }}
+            <p>PDF</p>
             {!! $errors->first('antecedentes_penales', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">
             {{ Form::label('antecedentes_policiacos') }}
             {{ Form::file('antecedentes_policiacos', ['class' => 'form-control-file']) }}
+            <p>PDF</p>
             {!! $errors->first('antecedentes_policiacos', '<div class="invalid-feedback">:message</div>') !!}
         </div>        
 
         <div class="form-group">
             {{ Form::label('renas') }}
             {{ Form::file('renas', ['class' => 'form-control-file']) }}
+            <p>PDF</p>
             {!! $errors->first('renas', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">
             {{ Form::label('boleto_ornato') }}
             {{ Form::file('boleto_ornato', ['class' => 'form-control-file']) }}
+            <p>PDF</p>
             {!! $errors->first('boleto_ornato', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

@@ -20,6 +20,9 @@
                                 <a href="{{ route('propio.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}
                                 </a>
+                                <a href="{{ route('report.reportpropiotable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
+                                    <i class="fa fa-fw fa-file-pdf"></i> {{ __('All PDF') }}
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -45,7 +48,7 @@
                                         <th>Vehiculos Asociados</th>
                                         <th>Nombre Empresa</th>
                                         <th>Nit Empresa</th>
-                                        <th></th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>

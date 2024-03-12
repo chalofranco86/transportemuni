@@ -9,6 +9,7 @@ use App\Http\Controllers\ReportCardController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ReporteTarjetapiloto;
 use App\Http\Controllers\RutaController;
+use App\Http\Controllers\ImageConversionController;
 
 
 /*
@@ -31,16 +32,21 @@ Auth::routes();
 Route::get('cards/pdf/{id}', [CardController::class, 'generatePDF'])->name('cards.pdf');
 Route::get('report/reportvehitable', [VehiController::class, 'generateAllPDF'])->name('report.reportvehitable');
 Route::get('report/reportrutastable', [RutaController::class, 'generateAllRPDF'])->name('report.reportrutastable');
-Route::delete('/propios/{propio}', 'PropioController@destroy')->name('propios.destroy');
+Route::get('report/reportpropiotable', [PropioController::class, 'generateAllPDF'])->name('report.reportpropiotable');
+Route::delete('/propios/{propio}', [PropioController::class, 'destroy'])->name('propios.destroy');
 Route::resource('propio', App\Http\Controllers\PropioController::class)->middleware('auth');
 Route::get('/propios', [PropioController::class, 'index'])->name('propios.index');
-Route::patch('/propios/{propio}', 'PropioController@update')->name('propios.update');
+Route::patch('/propios/{propio}', [PropioController::class, 'update'])->name('propios.update');
+
 Route::resource('documentos', App\Http\Controllers\DocumentoController::class);
 Route::resource('rutas', App\Http\Controllers\RutaController::class);
 Route::resource('vehis', VehiController::class);
 Route::resource('cards', App\Http\Controllers\CardController::class);
-Route::get('/cards/{card}/edit', 'CardController@edit')->name('cards.edit');
+
+/*Route::get('/cards/{card}/edit', [App\Http\Controllers\CardController::class, 'edit'])->name('cards.edit'); */
+Route::patch('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/generate-pdf/tarjetapiloto', [ReporteTarjetapiloto::class, 'generatePDF'])->name('generate-pdf-tarjetapiloto');
+Route::post('/convertir-imagen', [ImageConversionController::class, 'convertToPdf'])->name('convertir.imagen');

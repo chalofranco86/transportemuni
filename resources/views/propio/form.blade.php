@@ -48,7 +48,6 @@
             {!! $errors->first('nit_empresa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
-
         <div class="form-group">
             {{ Form::label('numero_vehiculo_id', 'Seleccionar Vehículos') }}
             {{ Form::select('numero_vehiculo_id[]', $vehi->pluck('nombre_vehi', 'id'), $propio->vehiculos_asociados, ['class' => 'form-control vehiculo-select', 'multiple' => 'multiple']) }}

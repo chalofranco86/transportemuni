@@ -23,8 +23,8 @@
                 <th>Telefono Piloto</th>
                 <th>Tipo de Licencia</th>
                 <th>Foto Licencia</th>
-                <th>Foto Piloto</th>
-                <th>DPI Piloto</th>
+                <th>Foto Piloto IMAGEN</th>
+                <th>DPI Piloto IMAGEN</th>
                 <th>Fecha Emision</th>
                 <th>Fecha Vencimiento</th>
                 <th>Antecedentes Penales</th>
@@ -60,7 +60,7 @@
                                 <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
                             </a>
                             <a class="btn btn-sm btn-success" href="{{ route('cards.edit',$card->id) }}">
-                                <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
+                                <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                             </a>
                             @csrf
                             @method('DELETE')

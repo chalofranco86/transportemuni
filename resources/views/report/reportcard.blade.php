@@ -40,10 +40,10 @@
 
     <!-- Contenedor para la imagen en la esquina superior derecha -->
     <div class="logo-container">
-        <img src="{{ public_path('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo" style="width: 100px; height: auto;">
+        <img src="{{ public_path('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo" style="width: 160px; height: auto;">
     </div>
 
-    <h1>Tarjeta Piloto</h1>
+    <h1>             TARJETA PILOTO</h1>
     
     <div class="photo-container">
         <strong>Foto Piloto:</strong>

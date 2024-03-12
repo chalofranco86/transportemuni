@@ -40,6 +40,7 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Vehículo</th>
                 <th>Placa</th>
                 <th>Tarjeta Circulación</th>
@@ -51,6 +52,7 @@
         <tbody>
             @foreach ($vehis as $vehi)
                 <tr>
+                    <td>{{ $vehi->id }}</td>
                     <td>{{ $vehi->nombre_vehi }}</td>
                     <td>{{ $vehi->placa_vehi }}</td>
                     <td>{{ $vehi->tarjeta_circulacion ? 'Sí' : 'No' }}</td>
