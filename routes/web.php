@@ -50,3 +50,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/generate-pdf/tarjetapiloto', [ReporteTarjetapiloto::class, 'generatePDF'])->name('generate-pdf-tarjetapiloto');
 Route::post('/convertir-imagen', [ImageConversionController::class, 'convertToPdf'])->name('convertir.imagen');
+Route::patch('/cards/{id}/update_status', [CardController::class, 'update_status'])->name('cards.update_status');

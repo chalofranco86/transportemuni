@@ -11,6 +11,7 @@
         "doctrine/dbal": "^3.7",
         "guzzlehttp/guzzle": "^7.2",
         "infyomlabs/laravel-generator": "^5.4",
+        "intervention/image": "^3.4",
         "jeroennoten/laravel-adminlte": "^3.9",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",

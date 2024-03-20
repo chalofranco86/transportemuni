@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Propio;
 use App\Models\Vehi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 /**
@@ -160,12 +161,24 @@ public function create(Request $request)
      */
     public function update(Request $request, Propio $propio)
     {
-        request()->validate(Propio::$rules);
+        // Validar las reglas del modelo Propio
+        $request->validate(Propio::$rules);
 
-        $propio->update($request->all());
+        // Verificar y manejar la carga de archivos para dpi_propietario
+        if ($request->hasFile('dpi_propietario')) {
+            // Eliminar el archivo anterior si existe
+            Storage::delete($propio->dpi_propietario);
 
-        return redirect()->route('propios.index')
-            ->with('success', 'Propio updated successfully');
+            // Almacenar el nuevo archivo y actualizar la ruta en la base de datos
+            $dpiPath = $request->file('dpi_propietario')->store('dpi_propietario', 'public');
+            $propio->dpi_propietario = $dpiPath;
+        }
+
+        // Actualizar los otros campos del propietario
+        $propio->update($request->except('dpi_propietario'));
+
+        // Redireccionar a la vista de índice con un mensaje de éxito
+        return redirect()->route('propios.index')->with('success', 'Propio updated successfully');
     }
 
     /**

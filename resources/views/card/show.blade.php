@@ -57,6 +57,10 @@
                                     <strong>Numero Vehiculo Id:</strong>
                                     {{ $card->vehi->nombre_vehi }}
                                 </div>
+                                <div class="form-group">
+                                    <strong>ESTADO:</strong>
+                                    {{ $card->estado_card }}
+                                </div>
                             </div>
                         </div>
 

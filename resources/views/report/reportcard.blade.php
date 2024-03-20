@@ -6,33 +6,35 @@
     <title>Reportee</title>
     <style>
         body {
-            margin: 50px; /* Adjust the margin as needed */
-            font-family: 'Arial', sans-serif; /* Change the font family */
+            margin: 20px; /* Ajustar el margen según sea necesario */
+            font-family: 'Arial', sans-serif; /* Cambiar la familia de fuentes */
+            font-size: 10px; /* Cambiar el tamaño de la fuente */
         }
 
         .info-container {
-            max-width: 50%;
-            margin: 0 auto; /* Center the container */
-            float: left;
-            border: 1px solid #ccc; /* Add a border to the info container */
-            padding: 10px; /* Add padding for better readability */
+            max-width: 70%; /* Ajustar el ancho máximo */
+            margin-right: 30px; /* Ajustar el margen derecho para separar del contenedor de la foto */
+            border: 1px solid #ccc; /* Agregar un borde al contenedor de información */
+            padding: 5px; /* Agregar relleno para una mejor legibilidad */
+            float: left; /* Mover el contenedor de información a la izquierda */
         }
 
         .photo-container {
-            max-width: 30%;
-            float: right;
-            text-align: center; /* Center the content inside the photo container */
+            max-width: 20%; /* Ajustar el ancho máximo */
+            float: left; /* Mover el contenedor de la foto a la izquierda */
+            text-align: center; /* Centrar el contenido dentro del contenedor de la foto */
         }
 
         .photo-container img {
-            max-width: 100%;
+            max-width: 100%; /* Asegurar que la imagen no supere el ancho del contenedor */
         }
 
         /* Estilos para la imagen en la esquina superior derecha */
         .logo-container {
             position: absolute;
-            top: 20px; /* Ajusta la posición desde la parte superior */
-            right: 20px; /* Ajusta la posición desde la derecha */
+            top: 165px; /* Ajustar la posición desde la parte superior */
+            right: 515px; /* Ajustar la posición desde la derecha */
+            opacity: 0.2; /* Ajustar la opacidad de la imagen para dar el efecto de marca de agua */
         }
     </style>
 </head>
@@ -43,10 +45,10 @@
         <img src="{{ public_path('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo" style="width: 160px; height: auto;">
     </div>
 
-    <h1>             TARJETA PILOTO</h1>
+    <h1>   </h1>
     
     <div class="photo-container">
-        <strong>Foto Piloto:</strong>
+      
         @if ($card->foto_piloto && Storage::disk('public')->exists($card->foto_piloto))
             <img src="{{ public_path('storage/' . $card->foto_piloto) }}" alt="Foto Piloto" />
         @else
@@ -57,13 +59,9 @@
     <div class="info-container">
         <p><strong>Nombre Piloto:</strong> {{ $card->nombre_piloto }}</p>
         <p><strong>Direccion Piloto:</strong> {{ $card->direccion_piloto }}</p>
-        <p><strong>Correo Piloto:</strong> {{ $card->correo_piloto }}</p>
-        <p><strong>Telefono Piloto:</strong> {{ $card->telefono_piloto }}</p>
         <p><strong>Tipo Licencia:</strong> {{ $card->tipo_licencia }}</p>
         <p><strong>Vehiculo Asociado:</strong> {{ $card->vehi->nombre_vehi }}</p>
-
-        <!-- Agrega los campos adicionales que necesitas -->
-
+        <p><strong>Estado:</strong> {{ $card->estado_card }}</p>
         <p><strong>Fecha Emision:</strong> {{ $card->fecha_emision }}</p>
         <p><strong>Fecha Vencimiento:</strong> {{ $card->fecha_vencimiento }}</p>
     </div>

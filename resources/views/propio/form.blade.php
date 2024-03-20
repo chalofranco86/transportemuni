@@ -9,6 +9,7 @@
         <div class="form-group">
             {{ Form::label('dpi_propietario') }}
             {{ Form::file('dpi_propietario', ['class' => 'form-control-file' . ($errors->has('dpi_propietario') ? ' is-invalid' : '')]) }}
+            <p>PDF</p>
             {!! $errors->first('dpi_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -30,11 +31,6 @@
             {{ Form::label('direccion_fiscal') }}
             {{ Form::text('direccion_fiscal', $propio->direccion_fiscal, ['class' => 'form-control' . ($errors->has('direccion_fiscal') ? ' is-invalid' : ''), 'placeholder' => 'Direccion Fiscal']) }}
             {!! $errors->first('direccion_fiscal', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('numero_vehiculos_asociados') }}
-            {{ Form::text('numero_vehiculos_asociados', is_array($propio->vehiculos) ? count($propio->vehiculos) : 0, ['class' => 'form-control' . ($errors->has('numero_vehiculos_asociados') ? ' is-invalid' : ''), 'placeholder' => 'Numero Vehiculos Asociados', 'readonly' => 'readonly']) }}
-            {!! $errors->first('numero_vehiculos_asociados', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">

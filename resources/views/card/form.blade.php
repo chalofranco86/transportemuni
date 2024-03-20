@@ -34,7 +34,13 @@
 
         <div class="form-group">
             {{ Form::label('licencia') }}
+            @if($card->licencia)
+                <div>
+                    <a href="{{ $card->licencia }}">Ver archivo actual</a>
+                </div>
+            @endif
             {{ Form::file('licencia', ['class' => 'form-control-file']) }}
+            <p>PDF</p>
             {!! $errors->first('licencia', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
@@ -99,8 +105,5 @@
         </div>
 
 
-    </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>

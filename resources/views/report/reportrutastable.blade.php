@@ -42,6 +42,7 @@
         </tr>
         <thead>
             <tr>
+                <th>ID RUTA</th>
                 <th>NOMBRE RUTA</th>
                 <th>NO. RUTA</th>
                 
@@ -50,6 +51,7 @@
         <tbody>
             @foreach ($rutas as $ruta)
                 <tr>
+                    <td>{{ $ruta->id }}</td>
                     <td>{{ $ruta->nombre_ruta }}</td>
                     <td>{{ $ruta->numero_ruta }}</td>
 

@@ -116,40 +116,43 @@ class VehiController extends Controller
         // Encuentra el vehículo por su ID
         $vehi = Vehi::find($id);
     
-        // Verifica si se están enviando nuevos archivos y actualiza las rutas
-        if (request()->hasFile('tarjeta_circulacion')) {
-            $tarjetaCirculacionPath = request()->file('tarjeta_circulacion')->store('tarjetas_circulacion', 'public');
-            $vehi->tarjeta_circulacion = $tarjetaCirculacionPath;
-        }
-    
-        if (request()->hasFile('titulo_propiedad')) {
-            $tituloPropiedadPath = request()->file('titulo_propiedad')->store('titulos_propiedad', 'public');
-            $vehi->titulo_propiedad = $tituloPropiedadPath;
-        }
-    
-        // Guarda los cambios en la base de datos después de actualizar las rutas
+        // Retorna la vista de edición con los datos del vehículo
         return view('vehi.edit', compact('vehi'));
-    
     }
-    
     
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Vehi $vehi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vehi $vehi)
-    {
-        request()->validate(Vehi::$rules);
+ * Update the specified resource in storage.
+ *
+ * @param  \Illuminate\Http\Request $request
+ * @param  Vehi $vehi
+ * @return \Illuminate\Http\Response
+ */
+public function update(Request $request, Vehi $vehi)
+{
+    // Validar los datos del formulario
+    $request->validate(Vehi::$rules);
 
-        $vehi->update($request->all());
+    // Actualizar los datos del vehículo con los datos del formulario
+    $vehi->update($request->all());
 
-        return redirect()->route('vehis.index')
-            ->with('success', 'Vehi updated successfully');
+    // Manejar la carga de archivos si se están enviando nuevos archivos
+    if ($request->hasFile('tarjeta_circulacion')) {
+        $tarjetaCirculacionPath = $request->file('tarjeta_circulacion')->store('tarjetas_circulacion', 'public');
+        $vehi->tarjeta_circulacion = $tarjetaCirculacionPath;
     }
+
+    if ($request->hasFile('titulo_propiedad')) {
+        $tituloPropiedadPath = $request->file('titulo_propiedad')->store('titulos_propiedad', 'public');
+        $vehi->titulo_propiedad = $tituloPropiedadPath;
+    }
+
+    // Guardar los cambios en la base de datos
+    $vehi->save();
+
+    // Redireccionar a la vista de índice con un mensaje de éxito
+    return redirect()->route('vehis.index')->with('success', 'Vehículo actualizado correctamente');
+}
 
     /**
      * Remove the specified resource from storage.
@@ -159,9 +162,14 @@ class VehiController extends Controller
      */
     public function destroy($id)
     {
-        $vehi = Vehi::find($id)->delete();
-
-        return redirect()->route('vehis.index')
-            ->with('success', 'Vehi deleted successfully');
+        try {
+            $vehi = Vehi::find($id)->delete();
+            return redirect()->route('vehis.index')
+                ->with('success', 'Vehi deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->with('error', 'No se puede eliminar el vehículo porque se está utilizando en otro módulo de la aplicación.');
+        }
     }
+    
 }

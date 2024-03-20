@@ -33,6 +33,7 @@
                 <th>Boleto Ornato</th>
                 <th>Numero Vehiculo Id</th>
                 <th>Acciones</th>
+                <th>Estado</th>
             </tr>
         </thead>
         <tbody>
@@ -67,6 +68,17 @@
                             <button type="submit" class="btn btn-danger btn-sm">
                                 <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
                             </button>
+                        </form>
+                    </td>
+                    <td>
+                    <form action="{{ route('cards.update_status', $card->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                            <select name="estado_card" onchange="this.form.submit()">
+                                <option value="INACTIVO" {{ $card->estado_card == 'INACTIVO' ? 'selected' : '' }}>INACTIVO</option>
+                                <option value="ACTIVO" {{ $card->estado_card == 'ACTIVO' ? 'selected' : '' }}>ACTIVO</option>
+
+                            </select>
                         </form>
                     </td>
                 </tr>

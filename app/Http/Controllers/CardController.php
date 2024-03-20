@@ -7,6 +7,7 @@ use App\Models\Vehi;
 use App\Models\ReportCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 /**
@@ -148,18 +149,24 @@ class CardController extends Controller
         // Encuentra la tarjeta por su ID
         $card = Card::find($id);
     
+        // Si no se encuentra la tarjeta, redirige a la página de índice con un mensaje de error
+        if (!$card) {
+            return redirect()->route('cards.index')->with('error', 'Tarjeta no encontrada');
+        }
+    
         // Encuentra el vehículo asociado con la tarjeta
         $vehi = Vehi::pluck('nombre_vehi', 'id'); // Obtén la lista de vehículos
     
-        // Verifica si se están enviando nuevos archivos y actualiza las rutas
-        if (request()->hasFile('tarjeta_circulacion')) {
-            $tarjetaCirculacionPath = request()->file('tarjeta_circulacion')->store('tarjetas_circulacion', 'public');
-            $vehi->update(['tarjeta_circulacion' => $tarjetaCirculacionPath]);
-        }
+        // Carga los archivos existentes
+        $card->licencia = Storage::url($card->licencia);
+        $card->foto_piloto = Storage::url($card->foto_piloto);
+        $card->dpi_piloto = Storage::url($card->dpi_piloto);
+        $card->antecedentes_penales = Storage::url($card->antecedentes_penales);
+        $card->antecedentes_policiacos = Storage::url($card->antecedentes_policiacos);
+        $card->renas = Storage::url($card->renas);
+        $card->boleto_ornato = Storage::url($card->boleto_ornato);
     
-        // Repite el mismo proceso para otros archivos
-    
-        // Devuelve la vista de edición con el vehículo y la lista de vehículos
+        // Devuelve la vista de edición con la tarjeta y la lista de vehículos
         return view('card.edit', compact('card', 'vehi'));
     }
 
@@ -172,12 +179,62 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
+        // Validar las reglas del modelo Card
         request()->validate(Card::$rules);
 
+        // Actualizar los datos del card con los datos del formulario
         $card->update($request->all());
+    
+        // Manejar la carga de archivos si se están enviando nuevos archivos
+        if ($request->hasFile('licencia')) {
+            $licenciaPath = $request->file('licencia')->store('licencias', 'public');
+            $card->licencia = $licenciaPath;
+        }
 
+        if ($request->hasFile('foto_piloto')) {
+            $fotoPilotoPath = $request->file('foto_piloto')->store('foto_pilotos', 'public');
+            $card->foto_piloto = $fotoPilotoPath;
+        }
+
+        if ($request->hasFile('dpi_piloto')) {
+            $dpiPilotoPath = $request->file('dpi_piloto')->store('dpi_pilotos', 'public');
+            $card->dpi_piloto = $dpiPilotoPath;
+        }
+
+        if ($request->hasFile('antecedentes_penales')) {
+            $antecedentes_penalesPath = $request->file('antecedentes_penales')->store('antecedentes_penales', 'public');
+            $card->antecedentes_penales = $antecedentes_penalesPath;
+        }
+
+        if ($request->hasFile('antecedentes_policiacos')) {
+            $antecedentes_policiacosPath = $request->file('antecedentes_policiacos')->store('antecedentes_policiacos', 'public');
+            $card->antecedentes_policiacos = $antecedentes_policiacosPath;
+        }
+
+        if ($request->hasFile('renas')) {
+            $renasPath = $request->file('renas')->store('renas', 'public');
+            $card->renas = $renasPath;
+        }
+
+        if ($request->hasFile('boleto_ornato')) {
+            $boleto_ornatoPath = $request->file('boleto_ornato')->store('boleto_ornato', 'public');
+            $card->boleto_ornato = $boleto_ornatoPath;
+        }
+    
+        // Actualizar los otros campos de la tarjeta
+        $card->save();
+    
+        // Redireccionar a la vista de índice con un mensaje de éxito
         return redirect()->route('cards.index')
             ->with('success', 'Card updated successfully');
+    }
+    public function update_status(Request $request, $id)
+    {
+        $card = Card::find($id);
+        $card->estado_card = $request->estado_card;
+        $card->save();
+
+        return redirect()->route('cards.index')->with('success', 'Estado de la tarjeta actualizado con éxito');
     }
 
     /**

@@ -312,38 +312,37 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Propietarios',
-            'url'         => 'propio',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
-        [
             'text'        => 'Rutas',
             'url'         => 'rutas',
             'icon'        => 'fa fa-location-arrow',
             'label_color' => 'success',
         ],
         [
+            'text' => 'Vehiculos',
+            'url'  => 'vehis',
+            'icon' => 'fa fa-car',
+        ],
+        ['header' => 'account_settings'],
+        [
             'text'        => 'Tarjeta Piloto',
             'url'         => 'cards',
             'icon'        => 'fa fa-address-card',
             'label_color' => 'success',
         ],
-
-
-        ['header' => 'account_settings'],
         [
-            'text' => 'Vehiculos',
-            'url'  => 'vehis',
-            'icon' => 'fa fa-car',
+            'text'        => 'Propietarios',
+            'url'         => 'propio',
+            'icon'        => 'far fa-fw fa-file',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
+
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+        /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -380,7 +379,7 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
+        ], */
         ['header' => 'labels'],
         [
             'text'       => 'important',
