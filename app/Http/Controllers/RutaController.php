@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruta;
+use App\Models\Bitacora;
 use Illuminate\Http\Request;
 use PDF;
 

@@ -21,7 +21,7 @@
                                   {{ __('Crear Nuevo') }}
                                 </a>
                                 <a href="{{ route('report.reportpropiotable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
-                                    <i class="fa fa-fw fa-file-pdf"></i> {{ __('All PDF') }}
+                                    <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generar PDF') }}
                                 </a>
                             </div>
                         </div>

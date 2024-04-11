@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+        /**
+     * Define la relación uno a muchos con la bitácora.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function bitacora()
+    {
+        return $this->hasMany(Bitacora::class);
+    }
+
 }

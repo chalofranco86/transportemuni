@@ -336,12 +336,14 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-
+        ['header' => 'labels'],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Bitacora',
+            'url'  => 'bitacora/report',
             'icon' => 'fas fa-fw fa-lock',
+            'icon_color' => 'red',
         ],
+
         /* [
             'text'    => 'multilevel',
             'icon'    => 'fas fa-fw fa-share',
@@ -379,13 +381,13 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ], */
+        ], 
         ['header' => 'labels'],
         [
             'text'       => 'important',
             'icon_color' => 'red',
             'url'        => '#',
-        ],
+        ], */
 
     ],
 

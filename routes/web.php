@@ -10,6 +10,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ReporteTarjetapiloto;
 use App\Http\Controllers\RutaController;
 use App\Http\Controllers\ImageConversionController;
+use App\Http\Controllers\BitacoraController;
 
 
 /*
@@ -28,6 +29,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::middleware(['log.bitacora'])->group(function () {
 /* Route::get('cards/pdf/', [CardController::class, 'pdf'])->name('cards.pdf'); */
 Route::get('cards/pdf/{id}', [CardController::class, 'generatePDF'])->name('cards.pdf');
 Route::get('report/reportvehitable', [VehiController::class, 'generateAllPDF'])->name('report.reportvehitable');
@@ -51,3 +54,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/generate-pdf/tarjetapiloto', [ReporteTarjetapiloto::class, 'generatePDF'])->name('generate-pdf-tarjetapiloto');
 Route::post('/convertir-imagen', [ImageConversionController::class, 'convertToPdf'])->name('convertir.imagen');
 Route::patch('/cards/{id}/update_status', [CardController::class, 'update_status'])->name('cards.update_status');
+Route::get('/pdfbita', [BitacoraController::class, 'generatePDF'])->name('bitacora.pdf');
+Route::get('/bitacora/report', [BitacoraController::class, 'showReport']);
+});
