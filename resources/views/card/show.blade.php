@@ -18,7 +18,7 @@
                 </div>
 
                  <div class="card-body">
-                    <a href="{{ route('cards.pdf', ['id' => $card->id]) }}" class="btn btn-primary" target="_blank">Generar Informe PDF</a>
+                    <a href="{{ route('cards.pdf', ['id' => $card->id]) }}" class="btn btn-primary" target="_blank">Generar Tarjeta Piloto</a>
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Información General -->

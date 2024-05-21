@@ -1,32 +1,37 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+        <!-- Otros campos del formulario -->
         <div class="form-group">
             {{ Form::label('nombre_propietario') }}
             {{ Form::text('nombre_propietario', $propio->nombre_propietario, ['class' => 'form-control' . ($errors->has('nombre_propietario') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Propietario']) }}
             {!! $errors->first('nombre_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('dpi_propietario') }}
             {{ Form::file('dpi_propietario', ['class' => 'form-control-file' . ($errors->has('dpi_propietario') ? ' is-invalid' : '')]) }}
             <p>PDF</p>
             {!! $errors->first('dpi_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('nit_propietario') }}
             {{ Form::text('nit_propietario', $propio->nit_propietario, ['class' => 'form-control' . ($errors->has('nit_propietario') ? ' is-invalid' : ''), 'placeholder' => 'Nit Propietario']) }}
             {!! $errors->first('nit_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('telefono_propietario') }}
             {{ Form::text('telefono_propietario', $propio->telefono_propietario, ['class' => 'form-control' . ($errors->has('telefono_propietario') ? ' is-invalid' : ''), 'placeholder' => 'Telefono Propietario']) }}
             {!! $errors->first('telefono_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('correo_propietario') }}
             {{ Form::text('correo_propietario', $propio->correo_propietario, ['class' => 'form-control' . ($errors->has('correo_propietario') ? ' is-invalid' : ''), 'placeholder' => 'Correo Propietario']) }}
             {!! $errors->first('correo_propietario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('direccion_fiscal') }}
             {{ Form::text('direccion_fiscal', $propio->direccion_fiscal, ['class' => 'form-control' . ($errors->has('direccion_fiscal') ? ' is-invalid' : ''), 'placeholder' => 'Direccion Fiscal']) }}
@@ -38,6 +43,7 @@
             {{ Form::text('nombre_empresa', $propio->nombre_empresa, ['class' => 'form-control' . ($errors->has('nombre_empresa') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Empresa']) }}
             {!! $errors->first('nombre_empresa', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('nit_empresa') }}
             {{ Form::text('nit_empresa', $propio->nit_empresa, ['class' => 'form-control' . ($errors->has('nit_empresa') ? ' is-invalid' : ''), 'placeholder' => 'NIT Empresa']) }}
@@ -48,7 +54,7 @@
             {{ Form::label('numero_vehiculo_id', 'Seleccionar Vehículos') }}
             {{ Form::select('numero_vehiculo_id[]', $vehi->pluck('nombre_vehi', 'id'), $propio->vehiculos_asociados, ['class' => 'form-control vehiculo-select', 'multiple' => 'multiple']) }}
             {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>                                                                                                      
+        </div>
 
         <ul id="selectedVehiclesList">
             @if(isset($vehiculosAsociados))
@@ -59,6 +65,8 @@
                 @endforeach
             @endif
         </ul>
+    </div>
+</div>
     
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

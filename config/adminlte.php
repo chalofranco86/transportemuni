@@ -339,57 +339,12 @@ return [
         ['header' => 'labels'],
         [
             'text' => 'Bitacora',
-            'url'  => 'bitacora/report',
-            'icon' => 'fas fa-fw fa-lock',
-            'icon_color' => 'red',
+            'url' => 'bitacora/report',
+            'icon'=> 'fas fa-fw fa-lock',
+            'icon_color'=> 'red',
         ],
 
-        /* [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ], 
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ], */
-
-    ],
+    ],  
 
     /*
     |--------------------------------------------------------------------------

@@ -36,7 +36,7 @@
             {{ Form::label('licencia') }}
             @if($card->licencia)
                 <div>
-                    <a href="{{ $card->licencia }}">Ver archivo actual</a>
+                    <a href="{{ $card->licencia }}">Ver licencia actual</a>
                 </div>
             @endif
             {{ Form::file('licencia', ['class' => 'form-control-file']) }}
@@ -46,6 +46,11 @@
 
         <div class="form-group">
             {{ Form::label('foto_piloto') }}
+            @if($card->foto_piloto)
+                <div>
+                    <a href="{{ $card->foto_piloto }}">Ver fotografia actual</a>
+                </div>
+            @endif
             {{ Form::file('foto_piloto', ['class' => 'form-control-file']) }}
             <p>IMAGEN</p>
             {!! $errors->first('foto_piloto', '<div class="invalid-feedback">:message</div>') !!}
@@ -53,6 +58,11 @@
 
         <div class="form-group" >
             {{ Form::label('dpi_piloto')  }}
+            @if($card->dpi_piloto)
+                <div>
+                    <a href="{{ $card->dpi_piloto }}">Ver DPI actual</a>
+                </div>
+            @endif
             {{ Form::file('dpi_piloto', ['class' => 'form-control-file']) }}
             <p>IMAGEN</p>
             {!! $errors->first('dpi_piloto', '<div class="invalid-feedback">:message</div>') !!}
@@ -71,6 +81,11 @@
 
         <div class="form-group">
             {{ Form::label('antecedentes_penales') }}
+                @if($card->antecedentes_penales)
+                    <div>
+                        <a href="{{ $card->antecedentes_penales }}">Ver Antecede Penal actual</a>
+                    </div>
+                @endif
             {{ Form::file('antecedentes_penales', ['class' => 'form-control-file']) }}
             <p>PDF</p>
             {!! $errors->first('antecedentes_penales', '<div class="invalid-feedback">:message</div>') !!}
@@ -78,6 +93,11 @@
 
         <div class="form-group">
             {{ Form::label('antecedentes_policiacos') }}
+            @if($card->antecedentes_policiacos)
+                <div>
+                    <a href="{{ $card->antecedentes_policiacos }}">Ver Antecedente Policiaco actual</a>
+                </div>
+            @endif
             {{ Form::file('antecedentes_policiacos', ['class' => 'form-control-file']) }}
             <p>PDF</p>
             {!! $errors->first('antecedentes_policiacos', '<div class="invalid-feedback">:message</div>') !!}
@@ -85,6 +105,11 @@
 
         <div class="form-group">
             {{ Form::label('renas') }}
+            @if($card->renas)
+                <div>
+                    <a href="{{ $card->renas }}">Ver RENAS actual</a>
+                </div>
+            @endif
             {{ Form::file('renas', ['class' => 'form-control-file']) }}
             <p>PDF</p>
             {!! $errors->first('renas', '<div class="invalid-feedback">:message</div>') !!}
@@ -92,6 +117,11 @@
 
         <div class="form-group">
             {{ Form::label('boleto_ornato') }}
+            @if($card->boleto_ornato)
+                <div>
+                    <a href="{{ $card->boleto_ornato }}">Ver BOLETO ORNATO actual</a>
+                </div>
+            @endif
             {{ Form::file('boleto_ornato', ['class' => 'form-control-file']) }}
             <p>PDF</p>
             {!! $errors->first('boleto_ornato', '<div class="invalid-feedback">:message</div>') !!}
@@ -103,7 +133,6 @@
             {{ Form::select('numero_vehiculo_id', $vehi, $card->numero_vehiculo_id, ['class' => 'form-control' . ($errors->has('numero_vehiculo_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Vehículo']) }}
             {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-
 
     </div>
 </div>

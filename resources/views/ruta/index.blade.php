@@ -41,7 +41,9 @@
                                                     <a class="btn btn-sm btn-success" href="{{ route('rutas.edit',$ruta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
+                                                    @if (in_array(auth()->user()->role, ['superadmin']	))
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @endif
                                                 </form>
                                             </td>
                                         </tr>

@@ -55,5 +55,25 @@ Route::get('/generate-pdf/tarjetapiloto', [ReporteTarjetapiloto::class, 'generat
 Route::post('/convertir-imagen', [ImageConversionController::class, 'convertToPdf'])->name('convertir.imagen');
 Route::patch('/cards/{id}/update_status', [CardController::class, 'update_status'])->name('cards.update_status');
 Route::get('/pdfbita', [BitacoraController::class, 'generatePDF'])->name('bitacora.pdf');
-Route::get('/bitacora/report', [BitacoraController::class, 'showReport']);
+/* Route::get('/bitacora/report', [BitacoraController::class, 'showReport']);  */
+Route::middleware(['auth', 'CheckRole:superadmin'])->group(function () {
+    Route::get('/bitacora/report', [BitacoraController::class, 'showReport']); 
+});    
+
+});
+
+Auth::routes();
+
+Route::middleware(['auth','role:admin'])->group(function () {
+    Route::get('/bitacora', [App\Http\Controllers\BitacoraController::class, 'showReport'])->name('bitacora');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
