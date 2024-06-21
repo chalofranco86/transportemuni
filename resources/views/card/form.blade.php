@@ -129,6 +129,12 @@
 
         <!-- Campo para seleccionar un vehículo existente -->
         <div class="form-group">
+            {{ Form::label('propietario_id', 'Propietario') }}
+            {{ Form::select('propietario_id', $propio, $card->propietario_id, ['class' => 'form-control' . ($errors->has('propietario_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un propietario']) }}
+            {!! $errors->first('propietario_id', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
             {{ Form::label('numero_vehiculo_id') }}
             {{ Form::select('numero_vehiculo_id', $vehi, $card->numero_vehiculo_id, ['class' => 'form-control' . ($errors->has('numero_vehiculo_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Vehículo']) }}
             {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}

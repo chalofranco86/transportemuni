@@ -15,6 +15,12 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('view-bitacora')
+                        <x-nav-link href="{{ url('bitacora/report') }}" :active="request()->routeIs('bitacora.report')">
+                            <i class="fas fa-fw fa-lock nav-icon"></i>
+                            {{ __('Bitacora') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 

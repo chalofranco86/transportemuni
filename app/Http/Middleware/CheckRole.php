@@ -8,14 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckRole
 {
-    public function handle(Request $request, Closure $next, $role)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string|null  $role
+     * @return mixed
+     */
+    public function handle(Request $request, Closure $next, $role = null)
     {
-        // Verifica si el usuario está autenticado
-        if (!Auth::check() || !in_array(Auth::user()->role, $roles)) {
+        if (!$request->user() || $request->user()->role !== $role) {
             return redirect('/');
         }
-        return next($request);
-    
 
+        return $next($request);
     }
 }

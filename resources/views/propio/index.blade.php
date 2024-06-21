@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+<table id="example" class="table table-striped table-bordered" style="width:100%">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -115,6 +116,7 @@
             </div>
         </div>
     </div>
+    </table>
 @endsection
 
 @section('css')

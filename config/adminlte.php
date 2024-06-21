@@ -342,6 +342,7 @@ return [
             'url' => 'bitacora/report',
             'icon'=> 'fas fa-fw fa-lock',
             'icon_color'=> 'red',
+           /* 'can' => 'view,App\Models\Bitacora',  */
         ],
 
     ],  

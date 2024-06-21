@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>LISTA VEHICULOS</h1>
     <div class="float-right">
-        <a href="{{ route('vehis.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+        <a href="{{ route('vehis.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
             {{ __('Nuevo') }}
         </a>
         <a href="{{ route('report.reportvehitable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
@@ -38,14 +38,15 @@
                     <td>{{ $vehi->titulo_propiedad ? 'Sí' : 'No' }}</td>
                     <td>{{ $vehi->tipo_vehi }}</td>
                     <td>{{ $vehi->numero_ruta_id }}</td>
-
                     <td>
-                        <form action="{{ route('vehis.destroy',$vehi->id) }}" method="POST">
-                            <a class="btn btn-sm btn-primary" href="{{ route('vehis.show',$vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                            <a class="btn btn-sm btn-success" href="{{ route('vehis.edit',$vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                        <form action="{{ route('vehis.destroy', $vehi->id) }}" method="POST">
+                            <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                            <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                            @if (in_array(auth()->user()->role, ['superadmin']))
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                            @endif
                         </form>
                     </td>
                 </tr>
@@ -53,6 +54,7 @@
         </tbody>
     </table>
 @stop
+
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -62,14 +64,13 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">  </script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js">  </script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js">  </script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js">  </script>
-
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     <script>
-        $('#example').DataTable( {
-          responsive:true
-        } );
+        $('#example').DataTable({
+            responsive: true
+        });
     </script>
 @stop

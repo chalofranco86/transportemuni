@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $antecedentes_policiacos
  * @property $renas
  * @property $boleto_ornato
+ * @property $propietario_id
  * @property $numero_vehiculo_id
  * @property $created_at
  * @property $updated_at
@@ -49,6 +50,7 @@ class Card extends Model
 		'antecedentes_policiacos' => 'required',
 		'renas' => 'required',
 		'boleto_ornato' => 'required',
+    'propietario_id' => 'required',
 		'numero_vehiculo_id' => 'required',
     ];
 
@@ -59,7 +61,7 @@ class Card extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_piloto','direccion_piloto','correo_piloto','telefono_piloto','tipo_licencia','licencia','foto_piloto','dpi_piloto','fecha_emision','fecha_vencimiento','antecedentes_penales','antecedentes_policiacos','renas','boleto_ornato','numero_vehiculo_id'];
+    protected $fillable = ['nombre_piloto','direccion_piloto','correo_piloto','telefono_piloto','tipo_licencia','licencia','foto_piloto','dpi_piloto','fecha_emision','fecha_vencimiento','antecedentes_penales','antecedentes_policiacos','renas','boleto_ornato', 'propietario_id' ,'numero_vehiculo_id'];
 
 
     /**
@@ -70,5 +72,8 @@ class Card extends Model
         return $this->hasOne('App\Models\Vehi', 'id', 'numero_vehiculo_id');
     }
     
-
+    public function propio()
+    {
+        return $this->hasOne('App\Models\Propio', 'id', 'propietario_id');
+    }
 }

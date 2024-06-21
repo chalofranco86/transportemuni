@@ -32,6 +32,7 @@
                 <th>Renas</th>
                 <th>Boleto Ornato</th>
                 <th>Numero Vehiculo Id</th>
+                <th>ID Propietario de Vehiculo</th>
                 <th>Acciones</th>
                 <th>Estado</th>
             </tr>
@@ -55,6 +56,7 @@
                     <td>{{ $card->renas ? 'SI' : 'NO' }}</td>
                     <td>{{ $card->boleto_ornato ? 'SI' : 'NO' }}</td>
                     <td>{{ $card->numero_vehiculo_id }}</td>
+                    <td>{{ $card->propietario_id }}</td>
                     <td>
                         <form action="{{ route('cards.destroy',$card->id) }}" method="POST">
                             <a class="btn btn-sm btn-primary " href="{{ route('cards.show',$card->id) }}">
@@ -89,6 +91,7 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
 @stop

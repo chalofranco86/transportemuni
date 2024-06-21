@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use App\Models\Vehi;
+use App\Models\Propio;
 use App\Models\ReportCard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -61,8 +62,9 @@ class CardController extends Controller
     {
         $card = new Card();
         $vehi = Vehi::pluck('nombre_vehi', 'id'); // Obtén la lista de vehículos
-
-        return view('card.create', compact('card', 'vehi')); // Pasa la lista de vehículos a la vista
+        $propio = Propio::pluck('nombre_propietario', 'id'); // Obtén la lista de propietarios
+    
+        return view('card.create', compact('card', 'vehi', 'propio')); // Pasa la lista de vehículos y propietarios a la vista
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vehi;
 use App\Models\Card;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class VehiController extends Controller
