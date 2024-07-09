@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth; // Asegúrate de importar la clase Auth
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class CardController
@@ -23,12 +25,40 @@ class CardController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function __construct()
+     {
+         $this->middleware('auth');
+     }
+
      public function index()
      {
-         $card = Card::paginate();
- 
-         return view('card.index', compact('card'))
-             ->with('i', (request()->input('page', 1) - 1) * $card->perPage());
+         $user = Auth::user();
+     
+         // Loguear el id del usuario autenticado y su rol
+         Log::info('Usuario autenticado ID: ' . $user->id . ' con rol: ' . $user->role);
+     
+         if ($user->role == 'superadmin') {
+             $cards = Card::paginate();
+         } else if ($user->role == 'propietario') {
+             // Encuentra el propietario correspondiente
+             $propio = Propio::where('correo_propietario', $user->email)->first();
+     
+             if ($propio) {
+                 // Obtén las tarjetas asociadas a este propietario
+                 $cards = Card::where('propietario_id', $propio->id)->paginate();
+             } else {
+                 // Si no se encuentra el propietario, devuelve una colección vacía
+                 $cards = collect();
+             }
+         } else {
+             // Para otros roles, obtén todas las tarjetas
+             $cards = Card::paginate();
+         }
+     
+         // Loguear las tarjetas obtenidas
+         Log::info('Tarjetas obtenidas: ' . $cards);
+     
+         return view('card.index', compact('cards'))->with('i', (request()->input('page', 1) - 1) * 20);
      }
 
      public function generatePDF($id)

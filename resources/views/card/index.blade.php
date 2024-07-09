@@ -6,7 +6,7 @@
     <h1>TARJETA PILOTO</h1>
 
     <div class="float-right">
-        <a href="{{ route('cards.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+        <a href="{{ route('cards.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
             {{ __('Create New') }}
         </a>
     </div>
@@ -38,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($card as $card)
+            @foreach ($cards as $card)
                 <tr>
                     <td>{{ ++$i }}</td>
                     <td>{{ $card->nombre_piloto }}</td>
@@ -73,13 +73,12 @@
                         </form>
                     </td>
                     <td>
-                    <form action="{{ route('cards.update_status', $card->id) }}" method="POST">
-                        @csrf
-                        @method('PATCH')
+                        <form action="{{ route('cards.update_status', $card->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
                             <select name="estado_card" onchange="this.form.submit()">
                                 <option value="INACTIVO" {{ $card->estado_card == 'INACTIVO' ? 'selected' : '' }}>INACTIVO</option>
                                 <option value="ACTIVO" {{ $card->estado_card == 'ACTIVO' ? 'selected' : '' }}>ACTIVO</option>
-
                             </select>
                         </form>
                     </td>

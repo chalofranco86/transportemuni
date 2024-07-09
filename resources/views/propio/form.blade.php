@@ -59,7 +59,7 @@
         <ul id="selectedVehiclesList">
             @if(isset($vehiculosAsociados))
                 @foreach($vehi as $vehiculo)
-                    @if(in_array($vehiculo->id, old('vehi_id', $vehiculosAsociados)))
+                    @if(in_array($vehiculo->id, old('numero_vehiculo_id', $vehiculosAsociados)))
                         <li>{{ $vehiculo->nombre_vehi }}</li>
                     @endif
                 @endforeach
@@ -70,13 +70,13 @@
     
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
+<script>
+    $(document).ready(function () {
         // Inicializar la variable vehiculosAsociados como un array vacío
-        var vehiculosAsociados = {!! json_encode(old('vehi_id', $vehiculosAsociados)) !!};
+        var vehiculosAsociados = {!! json_encode(old('numero_vehiculo_id', $vehiculosAsociados)) !!};
 
         // Escuchar cambios en la selección de vehículos y actualizar la lista dinámicamente
-        $("#vehi_id").change(function () {
+        $(".vehiculo-select").change(function () {
             updateSelectedVehiclesList();
         });
 
@@ -86,21 +86,16 @@
             selectedVehiclesList.empty();
 
             // Obtener los vehículos seleccionados
-            $(".vehiculo-select").each(function () {
-                var selectedVehicles = $(this).val();
-
-                // Mostrar los vehículos seleccionados en la lista
-                selectedVehicles.forEach(function (vehicleId) {
-                    var vehicleName = $(this).find("option[value='" + vehicleId + "']").text();
-                    selectedVehiclesList.append('<li>' + vehicleName + '</li>');
-                }.bind(this)); // Agrega .bind(this) para asegurar que $(this) se refiere al elemento correcto
+            $(".vehiculo-select option:selected").each(function () {
+                var vehicleName = $(this).text();
+                selectedVehiclesList.append('<li>' + vehicleName + '</li>');
             });
         }
 
         // Llamar a la función para actualizar la lista al cargar la página
         updateSelectedVehiclesList();
-        });
-    </script>
+    });
+</script>
 
     <script>
 $(document).ready(function () {

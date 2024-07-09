@@ -21,9 +21,11 @@
                                 <a href="{{ route('propio.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}
                                 </a>
+                                @if (in_array(auth()->user()->role, ['superadmin']))
                                 <a href="{{ route('report.reportpropiotable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
                                     <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generar PDF') }}
                                 </a>
+                                @endif
                             </div>
                         </div>
                     </div>

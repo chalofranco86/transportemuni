@@ -33,47 +33,55 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Card extends Model
 {
-    protected $table = 'card';  
+     // Especificar la tabla si no sigue la convención de nombres plural
+     protected $table = 'card';
 
-    static $rules = [
-		'nombre_piloto' => 'required',
-		'direccion_piloto' => 'required',
-		'correo_piloto' => 'required',
-		'telefono_piloto' => 'required',
-		'tipo_licencia' => 'required',
-		'licencia' => 'required',
-		'foto_piloto' => 'required',
-		'dpi_piloto' => 'required',
-		'fecha_emision' => 'required',
-		'fecha_vencimiento' => 'required',
-		'antecedentes_penales' => 'required',
-		'antecedentes_policiacos' => 'required',
-		'renas' => 'required',
-		'boleto_ornato' => 'required',
-    'propietario_id' => 'required',
-		'numero_vehiculo_id' => 'required',
-    ];
+     // Reglas de validación
+     static $rules = [
+         'nombre_piloto' => 'required',
+         'direccion_piloto' => 'required',
+         'correo_piloto' => 'required',
+         'telefono_piloto' => 'required',
+         'tipo_licencia' => 'required',
+         'licencia' => 'required',
+         'foto_piloto' => 'required',
+         'dpi_piloto' => 'required',
+         'fecha_emision' => 'required',
+         'fecha_vencimiento' => 'required',
+         'antecedentes_penales' => 'required',
+         'antecedentes_policiacos' => 'required',
+         'renas' => 'required',
+         'boleto_ornato' => 'required',
+         'propietario_id' => 'required',
+         'numero_vehiculo_id' => 'required',
+     ];
 
-    protected $perPage = 20;
+     protected $perPage = 20;
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nombre_piloto','direccion_piloto','correo_piloto','telefono_piloto','tipo_licencia','licencia','foto_piloto','dpi_piloto','fecha_emision','fecha_vencimiento','antecedentes_penales','antecedentes_policiacos','renas','boleto_ornato', 'propietario_id' ,'numero_vehiculo_id'];
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
+     /**
+      * Atributos que se pueden asignar en masa.
+      *
+      * @var array
+      */
+     protected $fillable = [
+         'nombre_piloto', 'direccion_piloto', 'correo_piloto', 'telefono_piloto', 
+         'tipo_licencia', 'licencia', 'foto_piloto', 'dpi_piloto', 'fecha_emision', 
+         'fecha_vencimiento', 'antecedentes_penales', 'antecedentes_policiacos', 'renas', 
+         'boleto_ornato', 'propietario_id', 'numero_vehiculo_id'
+     ];
+ 
+     /**
+      * Relación con el modelo Vehi.
+      *
+      * @return \Illuminate\Database\Eloquent\Relations\HasOne
+      */
     public function vehi()
     {
         return $this->hasOne('App\Models\Vehi', 'id', 'numero_vehiculo_id');
     }
     
-    public function propio()
+    public function propietario()
     {
-        return $this->hasOne('App\Models\Propio', 'id', 'propietario_id');
+        return $this->belongsTo('App\Models\User', 'propietario_id');
     }
 }

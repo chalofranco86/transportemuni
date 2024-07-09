@@ -65,6 +65,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'log.bitacora' => \App\Http\Middleware\LogBitacora::class,
         'checkrole' => \App\Http\Middleware\CheckRole::class,
-        /**  'role' => \App\Http\Middleware\CheckRole::class, */
+        'role' => \App\Http\Middleware\CheckRole::class, 
     ];
 }

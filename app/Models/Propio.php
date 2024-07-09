@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -28,15 +29,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Propio extends Model
 {
-    
+    use HasFactory;
+
     static $rules = [
-		'nombre_propietario' => 'required',
-		'dpi_propietario' => 'required',
-		'nit_propietario' => 'required',
-		'telefono_propietario' => 'required',
-		'correo_propietario' => 'required',
-		'direccion_fiscal' => 'required',
-		'numero_vehiculos_asociados' => 'required',
+        'nombre_propietario' => 'required',
+        'dpi_propietario' => 'required',
+        'nit_propietario' => 'required',
+        'telefono_propietario' => 'required',
+        'correo_propietario' => 'required',
+        'direccion_fiscal' => 'required',
+        'numero_vehiculos_asociados' => 'required',
     ];
 
     protected $perPage = 20;
@@ -46,16 +48,15 @@ class Propio extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre_propietario','dpi_propietario','nit_propietario','telefono_propietario','correo_propietario','direccion_fiscal','numero_vehiculos_asociados','vehiculos_asociados','nombre_empresa','nit_empresa','vehi_id'];
-
+    protected $fillable = [
+        'nombre_propietario', 'dpi_propietario', 'nit_propietario', 'telefono_propietario', 'correo_propietario', 'direccion_fiscal', 'nombre_empresa', 'nit_empresa'
+    ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function vehi()
+    public function vehis()
     {
         return $this->belongsToMany(Vehi::class, 'propios_vehiculos', 'propios_id', 'vehi_id');
     }
-    
-
 }

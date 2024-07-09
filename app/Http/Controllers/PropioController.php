@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Propio;
 use App\Models\Vehi;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Importa Hash
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
@@ -56,16 +58,21 @@ class PropioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-public function create(Request $request)
-{
-    $propio = new Propio();
-    $vehi = Vehi::all(); // Obtén todos los vehículos
-
-    // Obtén los vehículos asociados al propietario actual
-    $vehiculosAsociados = $propio->vehi->pluck('id')->toArray();
-
-    return view('propio.create', compact('propio', 'vehi', 'vehiculosAsociados'));
-}
+    public function create(Request $request)
+    {
+        $propio = new Propio();
+        $vehi = Vehi::all(); // Obtén todos los vehículos
+    
+        // Obtén los vehículos asociados al propietario actual
+        $vehiculosAsociados = []; // Initialize as empty array
+        
+        // Check if $propio has vehis loaded
+        if ($propio->exists) {
+            $vehiculosAsociados = $propio->vehis->pluck('id')->toArray();
+        }
+    
+        return view('propio.create', compact('propio', 'vehi', 'vehiculosAsociados'));
+    }
 
 
     /**
@@ -76,7 +83,7 @@ public function create(Request $request)
      */
     public function store(Request $request)
     {
-        // Asegúrate de que los campos requeridos estén presentes
+        // Validaciones
         $validatedData = $request->validate([
             'nombre_propietario' => 'required',
             'dpi_propietario' => 'required|file|mimes:pdf|max:2048',
@@ -86,37 +93,39 @@ public function create(Request $request)
             'direccion_fiscal' => 'required',
             'numero_vehiculo_id' => 'required|array',
             'numero_vehiculo_id.*' => 'exists:vehi,id',
-            'vehi_id' => 'array',
-            'vehi_id.*' => 'exists:vehi,id',
             'nombre_empresa' => 'nullable',
             'nit_empresa' => 'nullable',
         ]);
-    
+
         // Verifica si se está enviando un archivo para "dpi_propietario"
         if ($request->hasFile('dpi_propietario')) {
             $dpiPath = $request->file('dpi_propietario')->store('dpi_propietario', 'public');
             $validatedData['dpi_propietario'] = $dpiPath;
         }
 
-        // Crea un nuevo Propio con los datos validados
+        // Crear un nuevo Propio con los datos validados
         $propio = Propio::create($validatedData);
-    
-        // Asocia el vehículo seleccionado al propietario
-        $propio->vehi_id = $request->input('numero_vehiculo_id');
+
+        // Crear un nuevo usuario con la información del propietario
+        $user = User::create([
+            'name' => $validatedData['nombre_propietario'],
+            'email' => $validatedData['correo_propietario'],
+            'password' => Hash::make($validatedData['correo_propietario']), // Generar una contraseña genérica
+            'role' => 'propietario'
+        ]);
+
+        // Asociar los vehículos seleccionados al propietario
+        $vehiIds = $request->input('numero_vehiculo_id');
+        $propio->vehis()->attach($vehiIds);
+
+        // Actualizar los campos adicionales en la tabla propios
+        $propio->numero_vehiculos_asociados = count($vehiIds);
+        $propio->vehiculos_asociados = json_encode($vehiIds);
         $propio->save();
-    
-        // Obtiene los vehículos asociados actualmente y agrega el nuevo vehículo seleccionado
-        $vehiIds = $request->input('numero_vehiculo_id', []);
-    
-        // Convierte el array de vehículo IDs a un formato que puedas almacenar en la base de datos
-        $serializedVehiIds = json_encode($vehiIds);
-    
-        // Actualiza los vehículos asociados al propietario
-        $propio->update(['vehiculos_asociados' => $serializedVehiIds]);
-    
-        // Redirecciona a la vista de índice con un mensaje de éxito
-        return redirect()->route('propio.index')->with('success', 'Propio created successfully.');
-    }  
+
+        // Redireccionar a la vista de índice con un mensaje de éxito
+        return redirect()->route('propio.index')->with('success', 'Propio creado exitosamente.');
+    }
     
     
     /**
@@ -161,7 +170,7 @@ public function create(Request $request)
      */
     public function update(Request $request, Propio $propio)
     {
-        // Asegúrate de que los campos requeridos estén presentes y correctos
+        // Validaciones
         $validatedData = $request->validate([
             'nombre_propietario' => 'required',
             'dpi_propietario' => 'nullable|file|mimes:pdf|max:2048',
@@ -174,34 +183,35 @@ public function create(Request $request)
             'nombre_empresa' => 'nullable',
             'nit_empresa' => 'nullable',
         ]);
-    
+
         // Verificar y manejar la carga de archivos para dpi_propietario
         if ($request->hasFile('dpi_propietario')) {
             // Eliminar el archivo anterior si existe
             if ($propio->dpi_propietario) {
                 Storage::disk('public')->delete($propio->dpi_propietario);
             }
-    
+
             // Almacenar el nuevo archivo y actualizar la ruta en la base de datos
             $dpiPath = $request->file('dpi_propietario')->store('dpi_propietario', 'public');
             $validatedData['dpi_propietario'] = $dpiPath;
         }
-    
+
         // Actualizar los otros campos del propietario
         $propio->update($validatedData);
-    
-        // Asocia el vehículo seleccionado al propietario
-        $vehiIds = $request->input('numero_vehiculo_id', []);
-    
-        // Convierte el array de vehículo IDs a un formato que puedas almacenar en la base de datos
-        $serializedVehiIds = json_encode($vehiIds);
-    
-        // Actualiza los vehículos asociados al propietario
-        $propio->update(['vehiculos_asociados' => $serializedVehiIds]);
-    
+
+        // Actualizar los vehículos asociados al propietario
+        $vehiIds = $request->input('numero_vehiculo_id');
+        $propio->vehis()->sync($vehiIds);
+
+        // Actualizar los campos adicionales en la tabla propios
+        $propio->numero_vehiculos_asociados = count($vehiIds);
+        $propio->vehiculos_asociados = json_encode($vehiIds);
+        $propio->save();
+
         // Redireccionar a la vista de índice con un mensaje de éxito
-        return redirect()->route('propio.index')->with('success', 'Propio updated successfully.');
+        return redirect()->route('propio.index')->with('success', 'Propio actualizado exitosamente.');
     }
+    
     
     /**
      * @param int $id

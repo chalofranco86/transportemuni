@@ -6,6 +6,8 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Models\Bitacora;
 use App\Policies\BitacoraPolicy;
+use App\Models\Vehi;
+use App\Policies\VehiPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Bitacora::class => BitacoraPolicy::class,
+        Vehi::class => VehiPolicy::class,
     ];
 
     /**

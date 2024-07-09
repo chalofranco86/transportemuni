@@ -59,6 +59,7 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
     Route::get('/bitacora', [BitacoraController::class, 'showReport'])->name('bitacora');
 });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

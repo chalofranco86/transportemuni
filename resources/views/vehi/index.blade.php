@@ -41,7 +41,11 @@
                     <td>
                         <form action="{{ route('vehis.destroy', $vehi->id) }}" method="POST">
                             <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                            @csrf
+                            @method('UPDATE')
+                            @if (in_array(auth()->user()->role, ['superadmin']))
                             <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                            @endif
                             @csrf
                             @method('DELETE')
                             @if (in_array(auth()->user()->role, ['superadmin']))
@@ -54,7 +58,6 @@
         </tbody>
     </table>
 @stop
-
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -69,8 +72,10 @@
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
     <script>
-        $('#example').DataTable({
-            responsive: true
+        $(document).ready(function() {
+            $('#example').DataTable({
+                responsive: true
+            });
         });
     </script>
 @stop

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehi;
 use App\Models\Card;
+use App\Models\Propio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
@@ -17,32 +18,49 @@ class VehiController extends Controller
      */
     public function index()
     {
-        $vehis = Vehi::paginate();
-
+        $user = Auth::user();
+        $vehis = collect(); // Inicializa una colección vacía por defecto
+    
+        if ($user->role === 'propietario') {
+            // Encuentra el propietario correspondiente
+            $propio = Propio::where('correo_propietario', $user->email)->first();
+    
+            if ($propio) {
+                // Obtén los vehículos asociados a este propietario
+                $vehis = Vehi::whereHas('propios', function($query) use ($propio) {
+                    $query->where('propios.id', $propio->id);
+                })->paginate();
+            }
+        } else {
+            // Para otros roles, obtén todos los vehículos
+            $vehis = Vehi::paginate();
+        }
+    
         return view('vehi.index', compact('vehis'))
             ->with('i', (request()->input('page', 1) - 1) * $vehis->perPage());
     }
+    
 
     public function generateAllPDF()
     {
         try {
             set_time_limit(300); // Set to 5 minutes 
-    
+        
             // Obtener todos los vehículos
             $vehis = Vehi::all();
-    
+        
             // Verificar si hay vehículos
             if ($vehis->isEmpty()) {
                 return redirect()->route('vehi.index')->with('error', 'No hay vehículos para generar el PDF');
             }
-    
+        
             // Cargar la vista con todos los vehículos
             $pdf = PDF::loadView('report.reportvehitable', compact('vehis'));
             return $pdf->download('reportevehiculos.pdf');
         } catch (\Exception $e) {
             // Puedes registrar la excepción para una investigación adicional
             \Log::error($e);
-    
+        
             // Redireccionar a una página de error
             return redirect()->route('vehis.index')->with('error', 'Error al generar el PDF: ' . $e->getMessage());
         }
