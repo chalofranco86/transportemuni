@@ -10,7 +10,11 @@
             <a href="{{ route('rutas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                 {{ __('NUEVO') }}
             </a>
+            @csrf
+            @method('GENERATE')
+            @if (in_array(auth()->user()->role, ['superadmin']	))
             <a href="{{ route('report.reportrutastable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
+            @endif
             <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generate All PDF') }}
             </a>
         </div>
@@ -38,7 +42,11 @@
                                             <td>
                                                 <form action="{{ route('rutas.destroy',$ruta->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('rutas.show',$ruta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                                                    @csrf
+                                                    @method('UPDATE')
+                                                    @if (in_array(auth()->user()->role, ['superadmin']	))
                                                     <a class="btn btn-sm btn-success" href="{{ route('rutas.edit',$ruta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    @endif
                                                     @csrf
                                                     @method('DELETE')
                                                     @if (in_array(auth()->user()->role, ['superadmin']	))

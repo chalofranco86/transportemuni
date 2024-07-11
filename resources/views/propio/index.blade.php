@@ -7,7 +7,6 @@
 @stop
 
 @section('content')
-<table id="example" class="table table-striped table-bordered" style="width:100%">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
@@ -37,7 +36,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example" class="table table-striped table-hover">
+                            <table id="propioTable" class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
@@ -118,7 +117,6 @@
             </div>
         </div>
     </div>
-    </table>
 @endsection
 
 @section('css')
@@ -136,7 +134,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#example').DataTable({
+            $('#propioTable').DataTable({
                 responsive: true
             });
         });

@@ -7,6 +7,7 @@ use App\Models\Vehi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Importa Hash
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 
@@ -23,8 +24,16 @@ class PropioController extends Controller
      */
     public function index()
     {
-        $propios = Propio::paginate();
-
+        $user = Auth::user();
+    
+        // Si el usuario tiene el rol de "superadmin", muestra todos los registros
+        if ($user->role == 'superadmin') {
+            $propios = Propio::paginate();
+        } else {
+            // Filtrar los propietarios basándose en el correo del usuario autenticado
+            $propios = Propio::where('correo_propietario', $user->email)->paginate();
+        }
+    
         return view('propio.index', compact('propios'))
             ->with('i', (request()->input('page', 1) - 1) * $propios->perPage());
     }

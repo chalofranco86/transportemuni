@@ -62,14 +62,20 @@
                             <a class="btn btn-sm btn-primary " href="{{ route('cards.show',$card->id) }}">
                                 <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
                             </a>
+                            @csrf
+                            @method('UPDATE')
+                            @if (in_array(auth()->user()->role, ['superadmin']	))
                             <a class="btn btn-sm btn-success" href="{{ route('cards.edit',$card->id) }}">
                                 <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                             </a>
+                            @endif
                             @csrf
                             @method('DELETE')
+                            @if (in_array(auth()->user()->role, ['superadmin']	))
                             <button type="submit" class="btn btn-danger btn-sm">
                                 <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
                             </button>
+                            @endif
                         </form>
                     </td>
                     <td>
