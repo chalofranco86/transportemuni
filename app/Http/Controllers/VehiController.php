@@ -31,6 +31,14 @@ class VehiController extends Controller
                     $query->where('propios.id', $propio->id);
                 })->paginate();
             }
+        } elseif ($user->role === 'piloto') {
+            // Obtén las tarjetas asociadas a este piloto
+            $cards = Card::where('correo_piloto', $user->email)->pluck('numero_vehiculo_id');
+    
+            if ($cards->isNotEmpty()) {
+                // Obtén los vehículos asociados a las tarjetas del piloto
+                $vehis = Vehi::whereIn('id', $cards)->paginate();
+            }
         } else {
             // Para otros roles, obtén todos los vehículos
             $vehis = Vehi::paginate();
@@ -40,7 +48,6 @@ class VehiController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $vehis->perPage());
     }
     
-
     public function generateAllPDF()
     {
         try {

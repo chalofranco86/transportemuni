@@ -120,7 +120,8 @@ class PropioController extends Controller
             'name' => $validatedData['nombre_propietario'],
             'email' => $validatedData['correo_propietario'],
             'password' => Hash::make($validatedData['correo_propietario']), // Generar una contraseña genérica
-            'role' => 'propietario'
+            'role' => 'propietario',
+            'roles' => '2'
         ]);
 
         // Asociar los vehículos seleccionados al propietario

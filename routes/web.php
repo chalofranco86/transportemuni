@@ -49,6 +49,9 @@ Route::middleware(['auth', 'log.bitacora'])->group(function () {
     Route::post('/convertir-imagen', [ImageConversionController::class, 'convertToPdf'])->name('convertir.imagen');
     Route::patch('/cards/{id}/update_status', [CardController::class, 'update_status'])->name('cards.update_status');
     Route::get('/pdfbita', [BitacoraController::class, 'generatePDF'])->name('bitacora.pdf');
+    Route::get('/propios/cancel', function () {
+        return redirect()->route('propios.index');
+    })->name('ruta.cancelar');
 });
 
 Route::middleware(['auth', 'checkrole:superadmin'])->group(function () {

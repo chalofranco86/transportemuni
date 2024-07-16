@@ -6,12 +6,14 @@ use App\Models\Card;
 use App\Models\Vehi;
 use App\Models\Propio;
 use App\Models\ReportCard;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth; // Asegúrate de importar la clase Auth
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class CardController
@@ -39,7 +41,7 @@ class CardController extends Controller
      
          if ($user->role == 'superadmin') {
              $cards = Card::paginate();
-         } else if ($user->role == 'propietario') {
+         } elseif ($user->role == 'propietario') {
              // Encuentra el propietario correspondiente
              $propio = Propio::where('correo_propietario', $user->email)->first();
      
@@ -50,6 +52,9 @@ class CardController extends Controller
                  // Si no se encuentra el propietario, devuelve una colección vacía
                  $cards = collect();
              }
+         } elseif ($user->role == 'piloto') {
+             // Filtrar las tarjetas basándose en el correo del usuario autenticado
+             $cards = Card::where('correo_piloto', $user->email)->paginate();
          } else {
              // Para otros roles, obtén todas las tarjetas
              $cards = Card::paginate();
@@ -60,6 +65,7 @@ class CardController extends Controller
      
          return view('card.index', compact('cards'))->with('i', (request()->input('page', 1) - 1) * 20);
      }
+     
 
      public function generatePDF($id)
      {
@@ -126,31 +132,38 @@ class CardController extends Controller
             $dpiPilotoPath = $request->file('dpi_piloto')->store('dpi_pilotos', 'public');
             $card->dpi_piloto = $dpiPilotoPath;
         }
-
+    
         if ($request->hasFile('antecedentes_penales')) {
             $antecedentes_penalesPath = $request->file('antecedentes_penales')->store('antecedentes_penales', 'public');
             $card->antecedentes_penales = $antecedentes_penalesPath;
         }
-
+    
         if ($request->hasFile('antecedentes_policiacos')) {
             $antecedentes_policiacosPath = $request->file('antecedentes_policiacos')->store('antecedentes_policiacos', 'public');
             $card->antecedentes_policiacos = $antecedentes_policiacosPath;
         }
-
+    
         if ($request->hasFile('renas')) {
             $renasPath = $request->file('renas')->store('renas', 'public');
             $card->renas = $renasPath;
         }
-
+    
         if ($request->hasFile('boleto_ornato')) {
             $boleto_ornatoPath = $request->file('boleto_ornato')->store('boleto_ornato', 'public');
             $card->boleto_ornato = $boleto_ornatoPath;
         }
     
-        // Repite el proceso para los demás archivos
-    
         // Guardar la tarjeta en la base de datos
         $card->save();
+    
+        // Crear un nuevo usuario con la información del piloto
+        $user = User::create([
+            'name' => $request->input('nombre_piloto'), // Asegúrate de que este campo esté en tu formulario
+            'email' => $request->input('correo_piloto'),
+            'password' => Hash::make($request->input('correo_piloto')), // Generar una contraseña genérica
+            'role' => 'piloto',
+            'roles' => '3'
+        ]);
     
         // Redireccionar a la vista de índice con un mensaje de éxito
         return redirect()->route('cards.index')->with('success', 'Card created successfully.');
