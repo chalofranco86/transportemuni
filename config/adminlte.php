@@ -322,7 +322,7 @@ return [
             'url'  => 'vehis',
             'icon' => 'fa fa-car',
         ],
-        ['header' => 'account_settings'],
+        ['header' => ''],
         [
             'text'        => 'Tarjeta Piloto',
             'url'         => 'cards',
@@ -336,7 +336,9 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        ['header' => ' '],
         ['header' => 'labels'],
+        ['header' => ' '],
         [
             'text' => 'Bitacora',
             'url' => 'bitacora/report',

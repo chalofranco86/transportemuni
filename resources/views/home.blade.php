@@ -3,18 +3,24 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>JEFATURA DE TRANSPORTE PÚBLICO</h1>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
-@stop
+    <p>.</p>
 
-@if (Auth::user()->can('view', App\Models\Bitacora::class))
-    <p>User can view Bitacora</p>
-@else
-    <p>User cannot view Bitacora</p>
-@endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (Auth::user()->can('view', App\Models\Bitacora::class))
+        <p>User can view Bitacora</p>
+    @else
+        <p>ROL NO PERMITIDO A ESTA FUNCIONALIDAD</p>
+    @endif
+@stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
@@ -23,4 +29,3 @@
 @section('js')
     <script> console.log('Hi!'); </script>
 @stop
-

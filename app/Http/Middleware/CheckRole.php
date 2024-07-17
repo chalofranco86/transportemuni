@@ -16,12 +16,12 @@ class CheckRole
      * @param  string|null  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role = null)
+    public function handle($request, Closure $next, $role)
     {
-        if (!$request->user() || $request->user()->role !== $role) {
-            return redirect('/');
+        if (!Auth::check() || Auth::user()->role !== $role) {
+            return redirect()->route('home')->with('error', 'ACCESO NO PERMITIDO A BITACORA');
         }
-
+        
         return $next($request);
     }
 }

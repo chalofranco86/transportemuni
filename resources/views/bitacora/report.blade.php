@@ -9,11 +9,16 @@
         <a href="{{ route('bitacora.pdf') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
             {{ __('GENERAR PDF BITACORA') }}
         </a>
-
     </div>
 @stop
 
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -34,7 +39,7 @@
             @endforeach
         </tbody>
     </table>
-    @stop
+@stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">

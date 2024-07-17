@@ -114,6 +114,12 @@ class CardController extends Controller
         // Validar las reglas del modelo Card
         request()->validate(Card::$rules);
     
+        // Verificar si el numero_vehiculo_id ya está en uso
+        $vehiculoEnUso = Card::where('numero_vehiculo_id', $request->input('numero_vehiculo_id'))->exists();
+        if ($vehiculoEnUso) {
+            return redirect()->back()->withErrors(['numero_vehiculo_id' => 'Este número de vehículo ya está en uso.'])->withInput();
+        }
+    
         // Inicializar una instancia de Card con los datos del formulario
         $card = new Card($request->all());
     
@@ -169,7 +175,6 @@ class CardController extends Controller
         return redirect()->route('cards.index')->with('success', 'Card created successfully.');
     }
     
-
     /**
      * Display the specified resource.
      *

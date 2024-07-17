@@ -128,17 +128,39 @@
         </div>
 
         <!-- Campo para seleccionar un vehículo existente -->
-        <div class="form-group">
-            {{ Form::label('propietario_id', 'Propietario') }}
-            {{ Form::select('propietario_id', $propio, $card->propietario_id, ['class' => 'form-control' . ($errors->has('propietario_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona un propietario']) }}
-            {!! $errors->first('propietario_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+            <div class="form-group">
+                {{ Form::label('propietario_id', 'Seleccionar Propietarios') }}
+                {{ Form::select('propietario_id', $propio, null, ['class' => 'form-control propietario-select', 'placeholder' => 'Seleccionar Propietario']) }}
+                {!! $errors->first('propietario_id', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
 
-        <div class="form-group">
-            {{ Form::label('numero_vehiculo_id') }}
-            {{ Form::select('numero_vehiculo_id', $vehi, $card->numero_vehiculo_id, ['class' => 'form-control' . ($errors->has('numero_vehiculo_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Vehículo']) }}
-            {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
+            <div class="form-group">
+                {{ Form::label('numero_vehiculo_id') }}
+                {{ Form::select('numero_vehiculo_id', $vehi, $card->numero_vehiculo_id, ['class' => 'form-control vehiculo-select' . ($errors->has('numero_vehiculo_id') ? ' is-invalid' : ''), 'placeholder' => 'Seleccionar Vehículo']) }}
+                {!! $errors->first('numero_vehiculo_id', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
 
     </div>
 </div>
+
+@section('css')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.propietario-select').select2({
+                placeholder: 'Seleccionar Propietario',
+                allowClear: true
+            });
+            $('.vehiculo-select').select2({
+                placeholder: 'Seleccionar Vehículo',
+                allowClear: true
+            });
+        });
+    </script>
+    <script> console.log('Hi!'); </script>
+@stop
