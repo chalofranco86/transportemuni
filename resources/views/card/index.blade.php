@@ -6,9 +6,13 @@
     <h1>TARJETA PILOTO</h1>
 
     <div class="float-right">
+    @csrf
+    @method('CREATE')
+    @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
         <a href="{{ route('cards.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
-            {{ __('Create New') }}
+            {{ __('NUEVO') }}
         </a>
+    @endif
     </div>
 @stop
 
@@ -64,16 +68,16 @@
                             </a>
                             @csrf
                             @method('UPDATE')
-                            @if (in_array(auth()->user()->role, ['superadmin']	))
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
                             <a class="btn btn-sm btn-success" href="{{ route('cards.edit',$card->id) }}">
                                 <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                             </a>
                             @endif
                             @csrf
                             @method('DELETE')
-                            @if (in_array(auth()->user()->role, ['superadmin']	))
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                             <button type="submit" class="btn btn-danger btn-sm">
-                                <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
+                                <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
                             </button>
                             @endif
                         </form>
@@ -82,10 +86,12 @@
                         <form action="{{ route('cards.update_status', $card->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
                             <select name="estado_card" onchange="this.form.submit()">
                                 <option value="INACTIVO" {{ $card->estado_card == 'INACTIVO' ? 'selected' : '' }}>INACTIVO</option>
                                 <option value="ACTIVO" {{ $card->estado_card == 'ACTIVO' ? 'selected' : '' }}>ACTIVO</option>
                             </select>
+                            @endif
                         </form>
                     </td>
                 </tr>

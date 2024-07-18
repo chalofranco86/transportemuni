@@ -26,8 +26,8 @@ class PropioController extends Controller
     {
         $user = Auth::user();
     
-        // Si el usuario tiene el rol de "superadmin", muestra todos los registros
-        if ($user->role == 'superadmin') {
+    // Si el usuario tiene el rol de "superadmin" o "admin", muestra todos los registros
+        if (in_array($user->role, ['superadmin', 'admin'])) {
             $propios = Propio::paginate();
         } else {
             // Filtrar los propietarios basándose en el correo del usuario autenticado

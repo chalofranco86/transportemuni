@@ -7,16 +7,20 @@
     <h1>LISTA RUTAS</h1>
 
         <div class="float-right">
+            @csrf
+            @method('CREATE')
+            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
             <a href="{{ route('rutas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                 {{ __('NUEVO') }}
             </a>
+            @endif
             @csrf
             @method('GENERATE')
-            @if (in_array(auth()->user()->role, ['superadmin']	))
+            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
             <a href="{{ route('report.reportrutastable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
-            @endif
             <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generate All PDF') }}
             </a>
+            @endif
         </div>
 @stop
 
@@ -44,13 +48,15 @@
                                                     <a class="btn btn-sm btn-primary " href="{{ route('rutas.show',$ruta->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
                                                     @csrf
                                                     @method('UPDATE')
-                                                    @if (in_array(auth()->user()->role, ['superadmin']	))
-                                                    <a class="btn btn-sm btn-success" href="{{ route('rutas.edit',$ruta->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                    @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
+                                                        <a class="btn btn-sm btn-success" href="{{ route('rutas.edit',$ruta->id) }}">
+                                                            <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @endif
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if (in_array(auth()->user()->role, ['superadmin']	))
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
+                                                    @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                     @endif
                                                 </form>
                                             </td>

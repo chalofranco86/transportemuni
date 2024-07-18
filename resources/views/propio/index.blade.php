@@ -17,14 +17,20 @@
                                 {{ __('Propio') }}
                             </span>
                             <div class="float-right">
+                            @csrf
+                            @method('CREATE')
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                                 <a href="{{ route('propio.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear Nuevo') }}
                                 </a>
-                                @if (in_array(auth()->user()->role, ['superadmin']))
+                            @endif
+                            @csrf
+                            @method('CREATE')
+                                @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
                                 <a href="{{ route('report.reportpropiotable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
                                     <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generar PDF') }}
                                 </a>
-                                @endif
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -95,16 +101,22 @@
                                             <td>
                                                 <form action="{{ route('propio.destroy',$propio->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('propio.show',$propio->id) }}">
-                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
+                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}
                                                     </a>
+                                                @csrf
+                                                @method('EDITAR')
+                                                @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
                                                     <a class="btn btn-sm btn-success" href="{{ route('propio.edit',$propio->id) }}">
-                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
+                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                                                     </a>
+                                                @endif
                                                     @csrf
                                                     @method('DELETE')
+                                                @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                                                     <button type="submit" class="btn btn-danger btn-sm">
                                                         <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
                                                     </button>
+                                                @endif
                                                 </form>
                                             </td>
                                         </tr>

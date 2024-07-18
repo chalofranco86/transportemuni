@@ -12,13 +12,17 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="card-title">{{ __('Show Card') }}</span>
-                        <a class="btn btn-primary" href="{{ route('cards.index') }}">{{ __('Back') }}</a>
+                        <span class="card-title">{{ __('INFORMACION TARJETA PILOTO') }}</span>
+                        <a class="btn btn-primary" href="{{ route('cards.index') }}">{{ __('ATRAS') }}</a>
                     </div>
                 </div>
 
                  <div class="card-body">
+                @csrf
+                @method('CREATE')
+                @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                     <a href="{{ route('cards.pdf', ['id' => $card->id]) }}" class="btn btn-primary" target="_blank">Generar Tarjeta Piloto</a>
+                @endif
                     <div class="row">
                         <div class="col-md-6">
                             <!-- Información General -->
