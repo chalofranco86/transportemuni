@@ -196,18 +196,14 @@ class CardController extends Controller
      */
     public function edit($id)
     {
-        // Encuentra la tarjeta por su ID
         $card = Card::find($id);
-    
-        // Si no se encuentra la tarjeta, redirige a la página de índice con un mensaje de error
         if (!$card) {
             return redirect()->route('cards.index')->with('error', 'Tarjeta no encontrada');
         }
     
-        // Encuentra el vehículo asociado con la tarjeta
-        $vehi = Vehi::pluck('nombre_vehi', 'id'); // Obtén la lista de vehículos
+        $vehi = Vehi::pluck('nombre_vehi', 'id');
+        $propio = Propio::pluck('nombre_propietario', 'id');
     
-        // Carga los archivos existentes
         $card->licencia = Storage::url($card->licencia);
         $card->foto_piloto = Storage::url($card->foto_piloto);
         $card->dpi_piloto = Storage::url($card->dpi_piloto);
@@ -216,8 +212,7 @@ class CardController extends Controller
         $card->renas = Storage::url($card->renas);
         $card->boleto_ornato = Storage::url($card->boleto_ornato);
     
-        // Devuelve la vista de edición con la tarjeta y la lista de vehículos
-        return view('card.edit', compact('card', 'vehi'));
+        return view('card.edit', compact('card', 'vehi', 'propio'));
     }
 
     /**
