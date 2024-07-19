@@ -19,22 +19,23 @@ class Vehi extends Model
 
     protected $perPage = 20;
 
-    protected $fillable = ['nombre_vehi',
-         'placa_vehi', 
-         'tarjeta_circulacion', 
-         'titulo_propiedad', 
-         'tipo_vehi', 
-         'numero_ruta_id'];
+    protected $fillable = [
+        'nombre_vehi',
+        'placa_vehi', 
+        'tarjeta_circulacion', 
+        'titulo_propiedad', 
+        'tipo_vehi', 
+        'numero_ruta_id'
+    ];
 
     public function ruta()
     {
         return $this->hasOne('App\Models\Ruta', 'id', 'numero_ruta_id');
     }
 
-    // Relación muchos a muchos con Propio
+    // Definir la relación con la tabla propios_vehiculos
     public function propios()
     {
         return $this->belongsToMany(Propio::class, 'propios_vehiculos', 'vehi_id', 'propios_id');
-    } 
-
+    }
 }

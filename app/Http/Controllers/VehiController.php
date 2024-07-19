@@ -7,6 +7,9 @@ use App\Models\Card;
 use App\Models\Propio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use illuminate\Support\Facades\Log;
 use PDF;
 
 class VehiController extends Controller
@@ -188,11 +191,35 @@ public function update(Request $request, Vehi $vehi)
      */
     public function destroy($id)
     {
+        Log::info("Inicio de eliminación del vehículo con ID: {$id}");
+        DB::beginTransaction();
         try {
-            $vehi = Vehi::find($id)->delete();
+            $vehi = Vehi::findOrFail($id);
+            Log::info("Vehículo encontrado: {$vehi}");
+    
+            $vehi->propios()->detach();
+            Log::info("Registros de propios_vehiculos eliminados para el vehículo con ID: {$id}");
+    
+            if ($vehi->tarjeta_circulacion && Storage::disk('public')->exists($vehi->tarjeta_circulacion)) {
+                Storage::disk('public')->delete($vehi->tarjeta_circulacion);
+                Log::info("Archivo tarjeta_circulacion eliminado para el vehículo con ID: {$id}");
+            }
+    
+            if ($vehi->titulo_propiedad && Storage::disk('public')->exists($vehi->titulo_propiedad)) {
+                Storage::disk('public')->delete($vehi->titulo_propiedad);
+                Log::info("Archivo titulo_propiedad eliminado para el vehículo con ID: {$id}");
+            }
+    
+            $vehi->delete();
+            Log::info("Vehículo con ID: {$id} eliminado exitosamente.");
+    
+            DB::commit();
+    
             return redirect()->route('vehis.index')
                 ->with('success', 'Vehi deleted successfully');
         } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error("Error al eliminar el vehículo con ID: {$id} - {$e->getMessage()}");
             return redirect()->back()
                 ->with('error', 'No se puede eliminar el vehículo porque se está utilizando en otro módulo de la aplicación.');
         }

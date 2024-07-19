@@ -55,6 +55,7 @@ class Propio extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
+    // Definir la relación con la tabla propios_vehiculos
     public function vehis()
     {
         return $this->belongsToMany(Vehi::class, 'propios_vehiculos', 'propios_id', 'vehi_id');

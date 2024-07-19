@@ -5,20 +5,14 @@
 @section('content_header')
     <h1>LISTA VEHICULOS</h1>
     <div class="float-right">
-    @csrf
-    @method('CREATE')
-    @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
-        <a href="{{ route('vehis.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
-            {{ __('Nuevo') }}
-        </a>
-    @endif
-    @csrf
-    @method('REPORT')
-    @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
-        <a href="{{ route('report.reportvehitable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
-            <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generate All PDF') }}
-        </a>
-    @endif
+        @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
+            <a href="{{ route('vehis.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
+                {{ __('Nuevo') }}
+            </a>
+            <a href="{{ route('report.reportvehitable') }}" class="btn btn-info btn-sm float-right" style="margin-right: 10px;">
+                <i class="fa fa-fw fa-file-pdf"></i> {{ __('Generate All PDF') }}
+            </a>
+        @endif
     </div>
 @stop
 
@@ -47,23 +41,19 @@
                     <td>{{ $vehi->tipo_vehi }}</td>
                     <td>{{ $vehi->numero_ruta_id }}</td>
                     <td>
-                        <form action="{{ route('vehis.destroy', $vehi->id) }}" method="POST">
-                            @csrf
-                            @method('CREATE')
-                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
-                                <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                            @endif
-                            @csrf
-                            @method('UPDATE')
-                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
-                                <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                            @endif
-                            @csrf
-                            @method('DELETE')
-                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
-                            @endif
-                        </form>
+                    <form action="{{ route('vehis.destroy', $vehi->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']))
+                            <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
+                        @endif
+                        @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
+                            <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este vehículo?');">
+                                <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
+                            </button>
+                        @endif
+                    </form>
                     </td>
                 </tr>
             @endforeach
