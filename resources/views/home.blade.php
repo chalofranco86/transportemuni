@@ -7,7 +7,10 @@
 @stop
 
 @section('content')
-    <p>.</p>
+    <div style="display: flex; align-items: center;">
+        <img src="{{ asset('vendor/adminlte/dist/img/cochegif.gif') }}" alt="Coche GIF" style="width: 1000px; height: auto; margin-right: 20px;">
+        <img src="{{ asset('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Transporte Logo" style="width: 1000px; height: auto;">
+    </div>
 
     @if (session('error'))
         <div class="alert alert-danger">
@@ -18,7 +21,7 @@
     @if (Auth::user()->can('view', App\Models\Bitacora::class))
         <p>User can view Bitacora</p>
     @else
-        <p>ROL NO PERMITIDO A ESTA FUNCIONALIDAD</p>
+
     @endif
 @stop
 

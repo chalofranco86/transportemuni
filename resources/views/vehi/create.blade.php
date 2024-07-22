@@ -23,8 +23,8 @@
                         @include('vehi.form')
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                            <a class="btn btn-danger" href="{{ route('vehis.index') }}">{{ __('Cancel') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('Crear') }}</button>
+                            <a class="btn btn-danger" href="{{ route('vehis.index') }}">{{ __('Cancelar') }}</a>
                         </div>
                     </form>
                 </div>
