@@ -38,7 +38,7 @@
         <tbody>
                                     @foreach ($rutas as $ruta)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
+                                            <td>{{ $ruta->id }}</td>
                                             
 											<td>{{ $ruta->nombre_ruta }}</td>
 											<td>{{ $ruta->numero_ruta }}</td>

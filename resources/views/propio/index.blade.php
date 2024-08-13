@@ -105,7 +105,7 @@
                                                     </a>
                                                 @csrf
                                                 @method('EDITAR')
-                                                @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
+                                                @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                                                     <a class="btn btn-sm btn-success" href="{{ route('propio.edit',$propio->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                                                     </a>
@@ -114,7 +114,7 @@
                                                     @method('DELETE')
                                                 @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                                                     <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
+                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
                                                     </button>
                                                 @endif
                                                 </form>

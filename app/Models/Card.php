@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $dpi_piloto
  * @property $fecha_emision
  * @property $fecha_vencimiento
+ * @property $no_pago
  * @property $antecedentes_penales
  * @property $antecedentes_policiacos
  * @property $renas
@@ -42,12 +43,13 @@ class Card extends Model
          'direccion_piloto' => 'required',
          'correo_piloto' => 'required',
          'telefono_piloto' => 'required',
-         'tipo_licencia' => 'required',
+         'tipo_licencia' => 'required',   
          'licencia' => 'required',
          'foto_piloto' => 'required',
          'dpi_piloto' => 'required',
          'fecha_emision' => 'required',
          'fecha_vencimiento' => 'required',
+         'no_pago' => 'required',
          'antecedentes_penales' => 'required',
          'antecedentes_policiacos' => 'required',
          'renas' => 'required',
@@ -66,7 +68,7 @@ class Card extends Model
      protected $fillable = [
          'nombre_piloto', 'direccion_piloto', 'correo_piloto', 'telefono_piloto', 
          'tipo_licencia', 'licencia', 'foto_piloto', 'dpi_piloto', 'fecha_emision', 
-         'fecha_vencimiento', 'antecedentes_penales', 'antecedentes_policiacos', 'renas', 
+         'fecha_vencimiento','no_pago'  ,'antecedentes_penales', 'antecedentes_policiacos', 'renas', 
          'boleto_ornato', 'propietario_id', 'numero_vehiculo_id'
      ];
  

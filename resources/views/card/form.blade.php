@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('tipo_licencia') }}
+            {{ Form::label('tipo_licencia', 'Tipo de Licencia') }}
             {{ Form::text('tipo_licencia', $card->tipo_licencia, ['class' => 'form-control' . ($errors->has('tipo_licencia') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Licencia']) }}
             {!! $errors->first('tipo_licencia', '<div class="invalid-feedback">:message</div>') !!}
         </div>
@@ -77,6 +77,12 @@
             {{ Form::label('fecha_vencimiento') }}
             {{ Form::date('fecha_vencimiento', $card->fecha_vencimiento, ['class' => 'form-control' . ($errors->has('fecha_vencimiento') ? ' is-invalid' : ''), 'placeholder' => 'Fecha Vencimiento']) }}
             {!! $errors->first('fecha_vencimiento', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('no_pago') }}
+            {{ Form::text('no_pago', $card->no_pago, ['class' => 'form-control' . ($errors->has('no_pago') ? ' is-invalid' : ''), 'placeholder' => 'No. Boleta de Pago']) }}
+            {!! $errors->first('no_pago', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
         <div class="form-group">

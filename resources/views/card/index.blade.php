@@ -37,6 +37,7 @@
                 <th>Boleto Ornato</th>
                 <th>Numero Vehiculo Id</th>
                 <th>ID Propietario de Vehiculo</th>
+                <th>No. Pago</th>
                 <th>Acciones</th>
                 <th>Estado</th>
             </tr>
@@ -61,10 +62,11 @@
                     <td>{{ $card->boleto_ornato ? 'SI' : 'NO' }}</td>
                     <td>{{ $card->numero_vehiculo_id }}</td>
                     <td>{{ $card->propietario_id }}</td>
+                    <td>{{ $card->no_pago }}</td>
                     <td>
                         <form action="{{ route('cards.destroy',$card->id) }}" method="POST">
                             <a class="btn btn-sm btn-primary " href="{{ route('cards.show',$card->id) }}">
-                                <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
+                                <i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}
                             </a>
                             @csrf
                             @method('UPDATE')
@@ -86,7 +88,7 @@
                         <form action="{{ route('cards.update_status', $card->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
-                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                             <select name="estado_card" onchange="this.form.submit()">
                                 <option value="INACTIVO" {{ $card->estado_card == 'INACTIVO' ? 'selected' : '' }}>INACTIVO</option>
                                 <option value="ACTIVO" {{ $card->estado_card == 'ACTIVO' ? 'selected' : '' }}>ACTIVO</option>

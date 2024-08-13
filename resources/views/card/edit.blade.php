@@ -25,8 +25,8 @@
                             @include('card.form')
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                                <a class="btn btn-danger" href="{{ route('cards.index') }}">{{ __('Cancel') }}</a>
+                                <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
+                                <a class="btn btn-danger" href="{{ route('cards.index') }}">{{ __('Cancelar') }}</a>
                             </div>
 
                         </form>
