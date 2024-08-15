@@ -28,7 +28,10 @@
 
         <div class="form-group">
             {{ Form::label('tipo_licencia', 'Tipo de Licencia') }}
-            {{ Form::text('tipo_licencia', $card->tipo_licencia, ['class' => 'form-control' . ($errors->has('tipo_licencia') ? ' is-invalid' : ''), 'placeholder' => 'Tipo de Licencia']) }}
+            {{ Form::select('tipo_licencia', ['A' => 'A', 'B' => 'B'], $card->tipo_licencia, [
+                'class' => 'form-control' . ($errors->has('tipo_licencia') ? ' is-invalid' : ''),
+                'placeholder' => 'Seleccionar Tipo de Licencia'
+            ]) }}
             {!! $errors->first('tipo_licencia', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

@@ -39,7 +39,7 @@
         var direccionCard = document.querySelector('input[name="direccion_piloto"]').value;
         var correoCard = document.querySelector('input[name="correo_piloto"]').value;
         var telefonoCard = document.querySelector('input[name="telefono_piloto"]').value;
-        var tipoLicencia = document.querySelector('input[name="tipo_licencia"]').value;
+        var tipoLicencia = document.querySelector('select[name="tipo_licencia"]').value;
         var licencia = document.querySelector('input[name="licencia"]').value;
         var fotoPiloto = document.querySelector('input[name="foto_piloto"]').value;
         var dpiPiloto = document.querySelector('input[name="dpi_piloto"]').value;

@@ -33,9 +33,14 @@ class Vehi extends Model
         return $this->hasOne('App\Models\Ruta', 'id', 'numero_ruta_id');
     }
 
-    // Definir la relación con la tabla propios_vehiculos
     public function propios()
     {
         return $this->belongsToMany(Propio::class, 'propios_vehiculos', 'vehi_id', 'propios_id');
+    }
+
+    // Relación con el modelo TipoVehi
+    public function tipoVehi()
+    {
+        return $this->belongsTo('App\Models\TipoVehi', 'tipo_vehi');
     }
 }

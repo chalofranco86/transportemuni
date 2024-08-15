@@ -70,7 +70,7 @@
                             </a>
                             @csrf
                             @method('UPDATE')
-                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
                             <a class="btn btn-sm btn-success" href="{{ route('cards.edit',$card->id) }}">
                                 <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
                             </a>

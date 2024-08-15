@@ -24,8 +24,11 @@
             {!! $errors->first('titulo_propiedad', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('tipo_vehi') }}
-            {{ Form::text('tipo_vehi', $vehi->tipo_vehi, ['class' => 'form-control' . ($errors->has('tipo_vehi') ? ' is-invalid' : ''), 'placeholder' => 'Tipo Vehiculo']) }}
+            {{ Form::label('tipo_vehi', 'Tipo Vehiculo') }}
+            {{ Form::select('tipo_vehi', $tiposVehi, null, [
+                'class' => 'form-control' . ($errors->has('tipo_vehi') ? ' is-invalid' : ''),
+                'placeholder' => 'Seleccionar Tipo Vehiculo'
+            ]) }}
             {!! $errors->first('tipo_vehi', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">

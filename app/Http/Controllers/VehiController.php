@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vehi;
 use App\Models\Card;
 use App\Models\Propio;
+use App\Models\TipoVehi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -85,9 +86,11 @@ class VehiController extends Controller
     public function create()
     {
         $vehi = new Vehi();
-        return view('vehi.create', compact('vehi'));
+        $tiposVehi = TipoVehi::pluck('tipo_vehiculo', 'id_tipo_vehiculo'); // Array asociativo
+        return view('vehi.create', compact('vehi', 'tiposVehi'));
     }
-
+    
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -96,26 +99,29 @@ class VehiController extends Controller
      */
     public function store(Request $request)
     {
+        // Eliminar esta línea después de la depuración
+        // dd($request->all());
+    
         // Validaciones
         request()->validate(Vehi::$rules);
-
+    
         // Crear una instancia de Vehi con los datos del formulario
-        $vehi = new Vehi($request->all());
-
+        $vehi = new Vehi($request->except(['tarjeta_circulacion', 'titulo_propiedad'])); // Excluye archivos
+    
         // Manejar la carga de archivos y almacenar las rutas en la base de datos
         if ($request->hasFile('tarjeta_circulacion')) {
             $tarjetaCirculacionPath = $request->file('tarjeta_circulacion')->store('tarjetas_circulacion', 'public');
             $vehi->tarjeta_circulacion = $tarjetaCirculacionPath;
         }
-
+    
         if ($request->hasFile('titulo_propiedad')) {
             $tituloPropiedadPath = $request->file('titulo_propiedad')->store('titulos_propiedad', 'public');
             $vehi->titulo_propiedad = $tituloPropiedadPath;
         }
-
+    
         // Guardar el vehículo en la base de datos
         $vehi->save();
-
+    
         // Redireccionar a la vista de índice con un mensaje de éxito
         return redirect()->route('vehis.index')
             ->with('success', 'Vehi created successfully.');
