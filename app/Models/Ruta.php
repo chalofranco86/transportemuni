@@ -18,21 +18,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Ruta extends Model
 {
-    
     static $rules = [
-		'nombre_ruta' => 'required',
-		'numero_ruta' => 'required',
+        'nombre_ruta' => 'required',
+        'numero_ruta' => 'required',
     ];
 
     protected $perPage = 20;
 
+    protected $fillable = ['nombre_ruta', 'numero_ruta'];
+
     /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
+     * Get the vehicles associated with the route.
      */
-    protected $fillable = ['nombre_ruta','numero_ruta'];
-
-
-
+    public function vehis()
+    {
+        return $this->hasMany(Vehi::class, 'numero_ruta_id', 'id');
+    }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruta;
-use App\Models\Bitacora;
+use App\Models\Propio;
+use App\Models\Card;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use PDF;
 
 /**
@@ -20,12 +23,40 @@ class RutaController extends Controller
      */
     public function index()
     {
-        $rutas = Ruta::paginate();
+        $user = Auth::user();
+        $rutas = collect(); // Initialize an empty collection by default
+    
+        if ($user->role === 'propietario') {
+            // Find the corresponding owner
+            $propio = Propio::where('correo_propietario', $user->email)->first();
+    
+            if ($propio) {
+                // Get the routes associated with this owner
+                $rutas = Ruta::whereHas('vehis', function($query) use ($propio) {
+                    $query->whereHas('propios', function($q) use ($propio) {
+                        $q->where('propios.id', $propio->id);
+                    });
+                })->paginate();
+            }
+        } elseif ($user->role === 'piloto') {
+            // Get the cards associated with this pilot
+            $cards = Card::where('correo_piloto', $user->email)->pluck('numero_vehiculo_id');
+    
+            if ($cards->isNotEmpty()) {
+                // Get the routes associated with the pilot's vehicles
+                $rutas = Ruta::whereHas('vehis', function($query) use ($cards) {
+                    $query->whereIn('id', $cards);
+                })->paginate();
+            }
+        } else {
+            // For other roles, get all routes
+            $rutas = Ruta::paginate();
+        }
 
         return view('ruta.index', compact('rutas'))
             ->with('i', (request()->input('page', 1) - 1) * $rutas->perPage());
     }
-
+    
     public function generateAllRPDF()
     {
         try {
