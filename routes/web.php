@@ -32,6 +32,8 @@ Auth::routes();
 
 Route::middleware(['auth', 'log.bitacora'])->group(function () {
     Route::get('cards/pdf/{id}', [CardController::class, 'generatePDF'])->name('cards.pdf');
+    Route::get('/cards/solicitudes', [CardController::class, 'solicitudes'])->name('cards.solicitudes');
+    Route::patch('/cards/{id}/solicitar', [CardController::class, 'solicitar'])->name('cards.solicitar');
     Route::get('report/reportvehitable', [VehiController::class, 'generateAllPDF'])->name('report.reportvehitable');
     Route::get('report/reportrutastable', [RutaController::class, 'generateAllRPDF'])->name('report.reportrutastable');
     Route::get('report/reportpropiotable', [PropioController::class, 'generateAllPDF'])->name('report.reportpropiotable');

@@ -20,8 +20,19 @@
                  <div class="card-body">
                 @csrf
                 @method('CREATE')
-                @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
+                @if (in_array(auth()->user()->role, ['superadmin', 'admin']) || (auth()->user()->role === 'operador' && $card->estado_card === 'ACTIVO'))
                     <a href="{{ route('cards.pdf', ['id' => $card->id]) }}" class="btn btn-primary" target="_blank">Generar Tarjeta Piloto</a>
+                @endif
+
+                <!-- Botón Solicitar -->
+                @if($card->estado_card != 'SOLICITADA')
+                    <form action="{{ route('cards.solicitar', $card->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('PATCH')
+                        <button type="submit" class="btn btn-warning">Solicitar</button>
+                    </form>
+                @else
+                    <button type="button" class="btn btn-secondary" disabled>Solicitado</button>
                 @endif
                     <div class="row">
                         <div class="col-md-6">

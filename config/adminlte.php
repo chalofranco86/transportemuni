@@ -346,6 +346,12 @@ return [
             'icon_color'=> 'red',
            /* 'can' => 'view,App\Models\Bitacora',  */
         ],
+        [
+            'text' => 'Solicitudes',
+            'url' => 'cards/solicitudes',
+            'icon'=> 'fas fa-fw fa-lock',
+            'icon_color'=> 'yellow',
+        ],
 
     ],  
 

@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS `bitacoras` (
   PRIMARY KEY (`id`),
   KEY `bitacora_user_id_foreign` (`user_id`),
   CONSTRAINT `bitacora_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2076 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2225 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.bitacoras: ~1,907 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.bitacoras: ~2,056 rows (aproximadamente)
 INSERT INTO `bitacoras` (`id`, `user_id`, `descripcion`, `created_at`, `updated_at`) VALUES
 	(56, 1, 'Acción en la ruta: /rutas, Método: GET', '2024-03-26 02:47:44', '2024-03-26 02:47:44'),
 	(57, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-03-26 02:47:46', '2024-03-26 02:47:46'),
@@ -2084,7 +2084,156 @@ INSERT INTO `bitacoras` (`id`, `user_id`, `descripcion`, `created_at`, `updated_
 	(2072, 33, 'Acción en la ruta: /rutas, Método: GET', '2024-08-15 20:27:45', '2024-08-15 20:27:45'),
 	(2073, 1, 'Acción en la ruta: /home, Método: GET', '2024-08-15 20:27:58', '2024-08-15 20:27:58'),
 	(2074, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-15 20:30:37', '2024-08-15 20:30:37'),
-	(2075, 27, 'Acción en la ruta: /rutas, Método: GET', '2024-08-15 20:30:54', '2024-08-15 20:30:54');
+	(2075, 27, 'Acción en la ruta: /rutas, Método: GET', '2024-08-15 20:30:54', '2024-08-15 20:30:54'),
+	(2076, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 21:09:30', '2024-08-15 21:09:30'),
+	(2077, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 21:09:34', '2024-08-15 21:09:34'),
+	(2078, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-15 21:09:37', '2024-08-15 21:09:37'),
+	(2079, 1, 'Acción en la ruta: /rutas, Método: GET', '2024-08-15 21:09:42', '2024-08-15 21:09:42'),
+	(2080, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 21:09:43', '2024-08-15 21:09:43'),
+	(2081, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 21:09:46', '2024-08-15 21:09:46'),
+	(2082, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 21:36:50', '2024-08-15 21:36:50'),
+	(2083, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 22:29:14', '2024-08-15 22:29:14'),
+	(2084, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 22:30:23', '2024-08-15 22:30:23'),
+	(2085, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-15 22:38:36', '2024-08-15 22:38:36'),
+	(2086, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 22:50:33', '2024-08-15 22:50:33'),
+	(2087, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 22:50:36', '2024-08-15 22:50:36'),
+	(2088, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 23:12:49', '2024-08-15 23:12:49'),
+	(2089, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 23:13:12', '2024-08-15 23:13:12'),
+	(2090, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 23:26:28', '2024-08-15 23:26:28'),
+	(2091, 1, 'Acción en la ruta: /vehis, Método: POST', '2024-08-15 23:26:34', '2024-08-15 23:26:34'),
+	(2092, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 23:26:34', '2024-08-15 23:26:34'),
+	(2093, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 23:26:48', '2024-08-15 23:26:48'),
+	(2094, 1, 'Acción en la ruta: /vehis, Método: POST', '2024-08-15 23:27:09', '2024-08-15 23:27:09'),
+	(2095, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 23:27:09', '2024-08-15 23:27:09'),
+	(2096, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:27:12', '2024-08-15 23:27:12'),
+	(2097, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-15 23:27:14', '2024-08-15 23:27:14'),
+	(2098, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-15 23:29:00', '2024-08-15 23:29:00'),
+	(2099, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-15 23:29:25', '2024-08-15 23:29:25'),
+	(2100, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-15 23:29:25', '2024-08-15 23:29:25'),
+	(2101, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-15 23:29:31', '2024-08-15 23:29:31'),
+	(2102, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-15 23:29:31', '2024-08-15 23:29:31'),
+	(2103, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:29:35', '2024-08-15 23:29:35'),
+	(2104, 1, 'Acción en la ruta: /cards/36/update_status, Método: PATCH', '2024-08-15 23:29:43', '2024-08-15 23:29:43'),
+	(2105, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:29:43', '2024-08-15 23:29:43'),
+	(2106, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:29:56', '2024-08-15 23:29:56'),
+	(2107, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-15 23:30:14', '2024-08-15 23:30:14'),
+	(2108, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-15 23:32:01', '2024-08-15 23:32:01'),
+	(2109, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:32:01', '2024-08-15 23:32:01'),
+	(2110, 35, 'Acción en la ruta: /rutas, Método: GET', '2024-08-15 23:32:17', '2024-08-15 23:32:17'),
+	(2111, 35, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 23:32:20', '2024-08-15 23:32:20'),
+	(2112, 35, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:32:21', '2024-08-15 23:32:21'),
+	(2113, 35, 'Acción en la ruta: /propio, Método: GET', '2024-08-15 23:32:25', '2024-08-15 23:32:25'),
+	(2114, 35, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:32:26', '2024-08-15 23:32:26'),
+	(2115, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-15 23:32:38', '2024-08-15 23:32:38'),
+	(2116, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-15 23:32:40', '2024-08-15 23:32:40'),
+	(2117, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-15 23:32:43', '2024-08-15 23:32:43'),
+	(2118, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:15:22', '2024-08-16 02:15:22'),
+	(2119, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:16:08', '2024-08-16 02:16:08'),
+	(2120, 18, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:16:30', '2024-08-16 02:16:30'),
+	(2121, 18, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:16:34', '2024-08-16 02:16:34'),
+	(2122, 18, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:16:37', '2024-08-16 02:16:37'),
+	(2123, 18, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:16:39', '2024-08-16 02:16:39'),
+	(2124, 18, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:16:43', '2024-08-16 02:16:43'),
+	(2125, 1, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:18:02', '2024-08-16 02:18:02'),
+	(2126, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:18:04', '2024-08-16 02:18:04'),
+	(2127, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-16 02:18:06', '2024-08-16 02:18:06'),
+	(2128, 1, 'Acción en la ruta: /vehis, Método: POST', '2024-08-16 02:18:56', '2024-08-16 02:18:56'),
+	(2129, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:18:56', '2024-08-16 02:18:56'),
+	(2130, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-16 02:19:03', '2024-08-16 02:19:03'),
+	(2131, 1, 'Acción en la ruta: /vehis, Método: POST', '2024-08-16 02:19:49', '2024-08-16 02:19:49'),
+	(2132, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:19:49', '2024-08-16 02:19:49'),
+	(2133, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:19:51', '2024-08-16 02:19:51'),
+	(2134, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:19:52', '2024-08-16 02:19:52'),
+	(2135, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:20:01', '2024-08-16 02:20:01'),
+	(2136, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:20:04', '2024-08-16 02:20:04'),
+	(2137, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-16 02:21:50', '2024-08-16 02:21:50'),
+	(2138, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:21:50', '2024-08-16 02:21:50'),
+	(2139, 1, 'Acción en la ruta: /cards/36/edit, Método: GET', '2024-08-16 02:22:18', '2024-08-16 02:22:18'),
+	(2140, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:22:33', '2024-08-16 02:22:33'),
+	(2141, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:22:36', '2024-08-16 02:22:36'),
+	(2142, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:22:38', '2024-08-16 02:22:38'),
+	(2143, 26, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:22:50', '2024-08-16 02:22:50'),
+	(2144, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:22:53', '2024-08-16 02:22:53'),
+	(2145, 26, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:22:55', '2024-08-16 02:22:55'),
+	(2146, 26, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:22:59', '2024-08-16 02:22:59'),
+	(2147, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:23:01', '2024-08-16 02:23:01'),
+	(2148, 26, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:23:03', '2024-08-16 02:23:03'),
+	(2149, 26, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:23:04', '2024-08-16 02:23:04'),
+	(2150, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:23:07', '2024-08-16 02:23:07'),
+	(2151, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:23:24', '2024-08-16 02:23:24'),
+	(2152, 26, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:23:29', '2024-08-16 02:23:29'),
+	(2153, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:23:34', '2024-08-16 02:23:34'),
+	(2154, 26, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:23:37', '2024-08-16 02:23:37'),
+	(2155, 26, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:24:24', '2024-08-16 02:24:24'),
+	(2156, 26, 'Acción en la ruta: /cards/38, Método: GET', '2024-08-16 02:24:26', '2024-08-16 02:24:26'),
+	(2157, 26, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:24:32', '2024-08-16 02:24:32'),
+	(2158, 26, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:24:33', '2024-08-16 02:24:33'),
+	(2159, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:25:07', '2024-08-16 02:25:07'),
+	(2160, 1, 'Acción en la ruta: /propio/create, Método: GET', '2024-08-16 02:25:09', '2024-08-16 02:25:09'),
+	(2161, 1, 'Acción en la ruta: /propio, Método: POST', '2024-08-16 02:26:08', '2024-08-16 02:26:08'),
+	(2162, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:26:08', '2024-08-16 02:26:08'),
+	(2163, 37, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:26:20', '2024-08-16 02:26:20'),
+	(2164, 37, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:26:21', '2024-08-16 02:26:21'),
+	(2165, 37, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:26:24', '2024-08-16 02:26:24'),
+	(2166, 37, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:26:25', '2024-08-16 02:26:25'),
+	(2167, 37, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:26:27', '2024-08-16 02:26:27'),
+	(2168, 37, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:26:30', '2024-08-16 02:26:30'),
+	(2169, 37, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:26:33', '2024-08-16 02:26:33'),
+	(2170, 37, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:26:34', '2024-08-16 02:26:34'),
+	(2171, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:26:44', '2024-08-16 02:26:44'),
+	(2172, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:26:46', '2024-08-16 02:26:46'),
+	(2173, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-16 02:28:17', '2024-08-16 02:28:17'),
+	(2174, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:28:17', '2024-08-16 02:28:17'),
+	(2175, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:28:22', '2024-08-16 02:28:22'),
+	(2176, 37, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:28:33', '2024-08-16 02:28:33'),
+	(2177, 37, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:28:36', '2024-08-16 02:28:36'),
+	(2178, 37, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:28:37', '2024-08-16 02:28:37'),
+	(2179, 37, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:28:38', '2024-08-16 02:28:38'),
+	(2180, 37, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:28:40', '2024-08-16 02:28:40'),
+	(2181, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:32:56', '2024-08-16 02:32:56'),
+	(2182, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-16 02:32:58', '2024-08-16 02:32:58'),
+	(2183, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:33:11', '2024-08-16 02:33:11'),
+	(2184, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:41:20', '2024-08-16 02:41:20'),
+	(2185, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:41:28', '2024-08-16 02:41:28'),
+	(2186, 1, 'Acción en la ruta: /vehis/create, Método: GET', '2024-08-16 02:41:36', '2024-08-16 02:41:36'),
+	(2187, 1, 'Acción en la ruta: /vehis, Método: POST', '2024-08-16 02:42:30', '2024-08-16 02:42:30'),
+	(2188, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:42:30', '2024-08-16 02:42:30'),
+	(2189, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:42:34', '2024-08-16 02:42:34'),
+	(2190, 1, 'Acción en la ruta: /propio/76, Método: DELETE', '2024-08-16 02:42:53', '2024-08-16 02:42:53'),
+	(2191, 1, 'Acción en la ruta: /propios, Método: GET', '2024-08-16 02:42:53', '2024-08-16 02:42:53'),
+	(2192, 1, 'Acción en la ruta: /propio/81, Método: DELETE', '2024-08-16 02:42:58', '2024-08-16 02:42:58'),
+	(2193, 1, 'Acción en la ruta: /propios, Método: GET', '2024-08-16 02:42:58', '2024-08-16 02:42:58'),
+	(2194, 1, 'Acción en la ruta: /propio/77, Método: DELETE', '2024-08-16 02:43:00', '2024-08-16 02:43:00'),
+	(2195, 1, 'Acción en la ruta: /propios, Método: GET', '2024-08-16 02:43:01', '2024-08-16 02:43:01'),
+	(2196, 1, 'Acción en la ruta: /propio/create, Método: GET', '2024-08-16 02:43:02', '2024-08-16 02:43:02'),
+	(2197, 1, 'Acción en la ruta: /propio, Método: POST', '2024-08-16 02:43:43', '2024-08-16 02:43:43'),
+	(2198, 1, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:43:43', '2024-08-16 02:43:43'),
+	(2199, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:43:45', '2024-08-16 02:43:45'),
+	(2200, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:43:49', '2024-08-16 02:43:49'),
+	(2201, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:51:18', '2024-08-16 02:51:18'),
+	(2202, 1, 'Acción en la ruta: /cards, Método: POST', '2024-08-16 02:51:28', '2024-08-16 02:51:28'),
+	(2203, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:51:28', '2024-08-16 02:51:28'),
+	(2204, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:52:20', '2024-08-16 02:52:20'),
+	(2205, 40, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:52:36', '2024-08-16 02:52:36'),
+	(2206, 40, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 02:52:38', '2024-08-16 02:52:38'),
+	(2207, 40, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:52:40', '2024-08-16 02:52:40'),
+	(2208, 40, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 02:52:42', '2024-08-16 02:52:42'),
+	(2209, 40, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:52:43', '2024-08-16 02:52:43'),
+	(2210, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 02:54:15', '2024-08-16 02:54:15'),
+	(2211, 1, 'Acción en la ruta: /cards/create, Método: GET', '2024-08-16 02:54:17', '2024-08-16 02:54:17'),
+	(2212, 1, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 02:54:33', '2024-08-16 02:54:33'),
+	(2213, 1, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 03:04:05', '2024-08-16 03:04:05'),
+	(2214, 1, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 03:04:07', '2024-08-16 03:04:07'),
+	(2215, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 03:04:22', '2024-08-16 03:04:22'),
+	(2216, 40, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 03:04:35', '2024-08-16 03:04:35'),
+	(2217, 40, 'Acción en la ruta: /vehis, Método: GET', '2024-08-16 03:04:36', '2024-08-16 03:04:36'),
+	(2218, 40, 'Acción en la ruta: /rutas, Método: GET', '2024-08-16 03:04:37', '2024-08-16 03:04:37'),
+	(2219, 40, 'Acción en la ruta: /propio, Método: GET', '2024-08-16 03:04:39', '2024-08-16 03:04:39'),
+	(2220, 40, 'Acción en la ruta: /home, Método: GET', '2024-08-16 03:04:42', '2024-08-16 03:04:42'),
+	(2221, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 21:11:38', '2024-08-16 21:11:38'),
+	(2222, 1, 'Acción en la ruta: /cards/36, Método: GET', '2024-08-16 21:12:29', '2024-08-16 21:12:29'),
+	(2223, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 21:14:49', '2024-08-16 21:14:49'),
+	(2224, 1, 'Acción en la ruta: /cards, Método: GET', '2024-08-16 22:06:14', '2024-08-16 22:06:14');
 
 -- Volcando estructura para tabla transportes.card
 CREATE TABLE IF NOT EXISTS `card` (
@@ -2112,21 +2261,15 @@ CREATE TABLE IF NOT EXISTS `card` (
   PRIMARY KEY (`id`),
   KEY `card_numero_vehiculo_id_foreign` (`numero_vehiculo_id`),
   CONSTRAINT `card_numero_vehiculo_id_foreign` FOREIGN KEY (`numero_vehiculo_id`) REFERENCES `vehi` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.card: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.card: ~5 rows (aproximadamente)
 INSERT INTO `card` (`id`, `propietario_id`, `nombre_piloto`, `direccion_piloto`, `correo_piloto`, `telefono_piloto`, `tipo_licencia`, `licencia`, `foto_piloto`, `dpi_piloto`, `fecha_emision`, `fecha_vencimiento`, `antecedentes_penales`, `antecedentes_policiacos`, `renas`, `boleto_ornato`, `numero_vehiculo_id`, `created_at`, `updated_at`, `estado_card`, `no_pago`) VALUES
-	(18, 82, 'Wiz Khalifa cHIQUEL', 'zona 6 xela 6-1', 'gfrancod@gmail.com', '54547454', 'C', 'licencias/H4WcbXWk1hBNgZD7VDuMsaurmHwJukpSFYduo5b7.pdf', 'foto_pilotos/HbzjR73EekFnk4BpiWUPKbnGZBZ2L75Jiq1kzziO.jpg', 'dpi_pilotos/ELNXZgVDVQNQddbcnNhTO1jRg8Gk2TGXxhjWGujX.png', '2024-06-13', '2025-07-14', 'antecedentes_penales/8YvuEIgotUS7WebbKp00C819PMLnyFEXVBwuyll6.pdf', 'antecedentes_policiacos/5VT0mcaIr9IC0BrR0hgoJqMe7VAya5QPDnOajKl5.pdf', 'renas/A3JvTcbrGsnjh3uQhMLE4pEXIiZLho6YTVirMf8j.pdf', 'boleto_ornato/qAnjtP4WgDm1aWZYj41AsxymcXgsRw2f8VuCCjwz.pdf', 6, '2024-06-14 21:48:57', '2024-07-20 02:40:46', 'ACTIVO', '12121'),
-	(20, 81, 'Enrique Alpirez', 'Calle A San Francisco Toto', 'enriqueal@mail.com', '15151487', 'M', 'licencias/yQVfcWrXEskyzWDvO2KUmAopcBjXhByqD4WcgnDl.pdf', 'fotos_piloto/g2UzI1195WO6fh12djpWPIADfoUoQUFzls55oYkK.jpg', 'dpi_pilotos/Kyw5hVvtKBRO2lU7ThoxgfQcY1Q57oWMkUBgjAxY.jpg', '2024-07-04', '2025-07-05', 'antecedentes_penales/Rb0E8iHiDw9cXQn7biKG0aRTxgJcUZEogWYnG1bT.pdf', 'antecedentes_policiacos/lA2K1aVXBauZtmIBqSKPxdB6OPHTqPGI6E6tI0zB.pdf', 'renas/WPWGTWbFm7njyTBNglbH2jces6s6bzGs60kGhG6j.pdf', 'boleto_ornato/ujyPLlK85zF2EM3YjioiOearR8TK79uXbmNyYRMu.pdf', 16, '2024-07-04 22:40:05', '2024-07-05 22:34:57', 'ACTIVO', '4454'),
-	(22, 84, 'Walter White', 'zona 11 2 calle 6-8', 'walterwhite@mail.com', '35315577', 'C', 'licencias/9WwxafwA0OSUudFWcBnI1HbuDfTTVMpi1Iwsn1GQ.pdf', 'fotos_piloto/468DktJslUFLCSGnw8TWihSMlWxFEe3y4Cr9JGCN.jpg', 'dpi_pilotos/An9g1UbZPUNjToFMRIo7ZkLvcbPJt0SVP95Q0b1q.png', '2024-07-15', '2025-08-16', 'antecedentes_penales/FSqrXo0LVfDEkhNUYxvGRfJivQNsKjX69wU7HYTX.pdf', 'antecedentes_policiacos/vyD4NtGge7fHGMEDamYLFqxNjpNkJenxRoc67k56.pdf', 'renas/XAn0WVwOSQp9TRj89fTDd0vOMZ7is1HB03KLoQcb.pdf', 'boleto_ornato/mWhcCE5v9qzjLj3goNORXbS2PjH5UZfLpFzfQ8l3.pdf', 19, '2024-07-16 04:11:45', '2024-07-16 04:11:45', NULL, '1564'),
-	(23, 83, 'Jessy Pickman', 'zona 2 colonia sol', 'jessypickman@mail.com', '34312210', 'C', 'licencias/t4YTuvN1xU62IZtictBe9SvZSTTC8wKAB8jkiKXY.pdf', 'fotos_piloto/0owXC2CatjpnECkWBuGYucjOgWsrviiw6QDtHRRt.jpg', 'dpi_pilotos/SojFfJaMpOzHeIbjRMJS6SNk4xsibqptXmeSEsqS.jpg', '2024-07-16', '2025-08-16', 'antecedentes_penales/YSg3jDaU1sF3rqJ8vdSM8ojKUPeSqCHHESXGlSRL.pdf', 'antecedentes_policiacos/kE5FO1LkhnutwUxtaqC0RMHrK7XrDmbjLhBdjeZy.pdf', 'renas/N7DsNz6NynENohRTNhi5x0dCGQlkVhowOzQwoSss.pdf', 'boleto_ornato/Hv3SEFnaiu4BzcNzNofmhwRm4gR21wse6KTraOrX.pdf', 17, '2024-07-16 04:20:37', '2024-07-16 04:20:37', NULL, '1231'),
-	(24, 82, 'Alberto Puac', 'zona 3 calle 2-4', 'albertopuac@mail.com', '23234415', 'C', 'licencias/1W6akkGF0jfKjNpnSUj8Mc4eB3NNzrWiTSCWNTgU.pdf', 'fotos_piloto/pAqcPAMXkbvaj8HoPnh4obyjrVkLH9UbP5bkSi2M.jpg', 'dpi_pilotos/QkulUs1I2LtqECSTa7Cuwq6o1AEmULiB4IGHDtWS.jpg', '2024-07-16', '2025-08-16', 'antecedentes_penales/A11BPRS45UW7cEP2EZxTVPHO8XO6dOg1ynej4fQi.pdf', 'antecedentes_policiacos/V6GBQByRrVONQXgaDLy1QQc1xGruWU4deAlkexMI.pdf', 'renas/S7tFbnB3202DUyAhCaeI5dsxDgoBgQALPF035asg.pdf', 'boleto_ornato/6loGA9vaBhNDiIcXV6Mfj4EDTavr3s3B5SGXtN5I.pdf', 14, '2024-07-16 04:28:10', '2024-07-16 04:28:10', NULL, '3333'),
-	(25, 80, 'Lucas Lopez', 'Zona 3 colonia luna', 'lucaslopez@mail.com', '51889045', 'M', 'licencias/j5T8Z9u41xNcHBqgEQYrP19YlSabr70HdVX1wYVw.pdf', 'fotos_piloto/CdrKQNaujhQogAmUTta75Yk958M0IKVHujmpgRjD.jpg', 'dpi_pilotos/iii8NYq7Yl8pI8BLqDnvg4IYXLJJGpimqUDMAJp1.jpg', '2024-08-16', '2026-08-16', 'antecedentes_penales/cA9Ky4Fqim9U4hg6LAMGI60LXMeYrgbulBe0chis.pdf', 'antecedentes_policiacos/3CCkDv1rVe4jzl5hKWRTEYcItandsAdWijltkMT4.pdf', 'renas/buq7rWqzCQ9h5okBeMVm9zqEpp5lnVLdpuYSzi13.pdf', 'boleto_ornato/p2MuNR5GlstAydJLmy1pWcejfO2RDxeclZTubQhX.pdf', 16, '2024-07-16 04:32:45', '2024-07-16 04:32:45', NULL, '1221'),
-	(26, 85, 'Pilar Puac', 'Zona 9 5ta calle 5-7', 'pilarpuac@mail.com', '36547710', 'M', 'licencias/h6fkTslegCoO6vdv54dF2OUnq4WagtnIZpp5nyn9.pdf', 'fotos_piloto/LEEfNVnGjmFl5C2SPvdxkeIukLpzVvNd16RktH60.png', 'dpi_pilotos/EfmMvn6hkR7eq2gRX3uUxlGuXKF30KZLAGKCFMbi.jpg', '2024-01-01', '2025-01-01', 'antecedentes_penales/wZOacxHzTQXYXPZmFtsm94kQjKuv845ql0YOi3S6.pdf', 'antecedentes_policiacos/B0SmFmK6B4pDPygxq9tdC7iktfDPTKsKapMhKIvB.pdf', 'renas/NcrDY3zqzNUrwTMSQOncBRyQXT4NFCAOeNdhn40q.pdf', 'boleto_ornato/YkQGpY1AM3kqWcMXAea3ptd9dzndkVz3pfGSJ06u.pdf', 16, '2024-07-18 03:51:33', '2024-08-13 21:48:48', 'ACTIVO', '2232'),
-	(27, 87, 'Oseas Lil', 'zona 8 4ta calle 1-3b', 'oseaslil@mail.com', '34556122', 'C', 'licencias/qIVrAg87riXmInrJHtyHv49oQaxiKyRV3uqoFloN.pdf', 'fotos_piloto/sN98Z7Fd2KsaIdmzgoJKNeutLCxJ9V5XUBEHk6SO.jpg', 'dpi_pilotos/6sAubuPZsQ7ZcHCiwvpYUyrDjU85O9AGjI9xc577.jpg', '2024-12-01', '2025-11-01', 'antecedentes_penales/SiFIr4EQ9GxQL69ApmhXtUmPb0hQql6ECgZrvXN2.pdf', 'antecedentes_policiacos/4KMkNEvnSbVJesTfkDZNy1uykh5CzUpHuBOF5Dey.pdf', 'renas/VeLA3Fxps8GIyTanfukWeFVVCSf7nug2OsPLtA2b.pdf', 'boleto_ornato/BgFHo3xuZk3TSrMzgEATFF8KU5B1gRQQBlt3C4V2.pdf', 15, '2024-07-18 04:00:43', '2024-07-19 03:00:53', 'ACTIVO', '4421312'),
-	(28, 88, 'Tomas Lux', 'Zona 5 paraje el limon', 'tomaslux@mail.com', '41552010', 'C', 'licencias/jlXpfNOVV3vfjnOsTEkNHWjCRrtmj0Zf3v0mbShx.pdf', 'fotos_piloto/iU8uBLklum2jItVl3vQNELN9qmBUuRNNUhphkYlW.jpg', 'dpi_pilotos/EesLlFl2VCwHiK6D2KdOfQpK8inTzO0asOxvtKyD.png', '2024-07-22', '2025-07-23', 'antecedentes_penales/hANpXTLB28u39MmgZDz5PleS65MfJRhQHi6nVOh7.pdf', 'antecedentes_policiacos/u5savL7sZeBaX6NM2t7kx2GzVeFKMsRnzdE74DNM.pdf', 'renas/dZblkebTeMi3gS5J8IfX51Y4CvKCwRMAAzkIyeuW.pdf', 'boleto_ornato/NCSEKpFPEhR3pcW33IowxKM3kFjJwLILk1Ddxybh.pdf', 23, '2024-07-22 21:10:14', '2024-07-22 21:11:28', 'ACTIVO', '2212'),
-	(29, 88, 'Ernan Juarez', 'Zona 3 calle 4-12 A', 'ernanjuarez@mail.com', '35447122', 'C', 'licencias/0DQ0JqP9K32hgeJKaEGHOvF727kBo1wHBsZrbF9p.pdf', 'fotos_piloto/xBhFFvS5LtXOPHi0GUEn0qQhBgTIT4icxn25Ca3q.jpg', 'dpi_pilotos/xeDH5BCTkIEdyU3Ec3Qg3ef57Gf6vR4b5hyqWTPT.jpg', '2024-08-12', '2025-09-13', 'antecedentes_penales/6EPy8P6WoVO4pYCiNVL6A2vRWcB5CSVW7RvAYm3h.pdf', 'antecedentes_policiacos/8GGPM4hel1J8P6bF1MkPMWgMZb9Eqw2g2wzhoPxB.pdf', 'renas/Zi8sFKWNGqHTkUndERsDManOv4xmtoOlVRFDamka.pdf', 'boleto_ornato/ssRI8RWba1fmRfTQ1Udp1p8jhhBpSfxcyIbBCAwh.pdf', 26, '2024-08-13 04:12:33', '2024-08-13 04:12:46', 'ACTIVO', '333'),
-	(30, 90, 'Ejemplo2 Puac', 'Zona 1 calle a', 'ejemplo2puac@mail.com', '45454544', 'B', 'licencias/4BvFqEwaKklDXgCVX94J3drayz2AA6nVQNd03ZNw.pdf', 'fotos_piloto/jtRs6pf48HlHsjx60JvtpofPDr0k4Y6hZxIErFyg.jpg', 'dpi_pilotos/R3SUQKiCB8aZIXpvJS7jOOjf79YZBqk0Cv9uJ1ks.png', '2024-01-02', '2025-05-01', 'antecedentes_penales/QChg3MdfmIpbH3haJfUqd2LYF6iQr5xvSScFSQZO.pdf', 'antecedentes_policiacos/7f6z9okYhHy5inKG7s8xk76z35yzc3v1tl8ejKmW.pdf', 'renas/8b9hWbKCb9kLZcomLIV1qcAIOB8xMYWormIHVGiH.pdf', 'boleto_ornato/xn73sOMX0zwequzod4I6vfRWV4SWK8eQRHTSWH7K.pdf', 27, '2024-08-13 21:32:14', '2024-08-13 21:32:24', 'ACTIVO', '42343');
+	(36, 86, 'Walter White', 'Zona 2 4-50 calle a', 'walterwhite@mail.com', '31051321', 'A', 'licencias/37fMFxFOFrPMt3cMve1q5aPTBjFjKwW5lUlrUBMr.pdf', 'fotos_piloto/Rp223UveVeDgeByRHv2mZDzRZPUAOkLVLbvI4rSD.jpg', 'dpi_pilotos/gU4PVranK71O1BjD8PUo5J7BC6clERl0pqt56GRP.png', '2024-08-15', '2024-12-31', 'antecedentes_penales/dqfQxKmY7c7S2BESHTEpvWnebf70Cn5yBpkr53KX.pdf', 'antecedentes_policiacos/b6dz95ethvtRq1TideDefBHqZnf9lm1l6KIX1MWT.pdf', 'renas/goUe6lI2MVXWw7QZrxtwJJL4TNSYyyiiQnZ620x3.pdf', 'boleto_ornato/gH7XnsZwxDDphx13igUkyVFfBLMeoacpnWAtXHc4.pdf', 29, '2024-08-15 23:28:59', '2024-08-15 23:29:43', 'ACTIVO', '4545454'),
+	(37, 86, 'Fabricio Chanquin', 'Zona 1 3 calle B', 'fabricio@mail.com', '52441022', 'A', 'licencias/D9XU1jgZRn7FIGpNMApJJ0QmI0JNEoJtt8fdHkHo.pdf', 'fotos_piloto/kvmDazYumRgwA7M3DbJ9MI0wbiS2zkjzgAbtav87.jpg', 'dpi_pilotos/NGfwDeAWQuSG7VSvr0IYq4foJJek0UeweXx7HFCf.png', '2024-09-16', '2025-09-16', 'antecedentes_penales/GVse5kkFH9c8btkjCH6FQYammDvjmhCBnboMSS44.pdf', 'antecedentes_policiacos/pMmYKrBCaKDuEWDtNXV6ivx4F7j5xFqjK4v9BN7I.pdf', 'renas/B0d6ZEB8lQgKZb8LPONupGIzrHuo1uTH9jJayv99.pdf', 'boleto_ornato/u8qEYWmRaWndrjCzXEt9xgg9hsJL3PfymSZ1eWsX.pdf', 28, '2024-08-15 23:32:01', '2024-08-15 23:32:01', NULL, '1111101'),
+	(38, 89, 'Estevan Plazola', 'Zona 13 calle 1-9 a', 'estevan@mail.com', '45110214', 'A', 'licencias/hlGlpJOyq6mGPwlicaglQLuOdVJMQ9q46IYxVpYi.pdf', 'fotos_piloto/2ZyhOWJRCTteqil7ZXd9TiZQIdE8PYSu0etDOJMX.jpg', 'dpi_pilotos/j3D4yVlQ7RodC0sKF4DqexBfdcOm9QXRZ4W1XtTr.png', '2024-09-16', '2025-09-16', 'antecedentes_penales/DBUkGSUnCrXdI8vbOlmIHi7e8GdUDvKkFWFXeD5q.pdf', 'antecedentes_policiacos/lvzkxRMFaw9ECn55ioLRihFyWGxIHkBxmpcPOiNJ.pdf', 'renas/RlJJUx45oXnBvCVZbXIjszNLwUSwmRp1Hh61Knwg.pdf', 'boleto_ornato/CNmClWCKCellDoMacplZiMR7LHAAmayHbJMDRUb9.pdf', 30, '2024-08-16 02:21:50', '2024-08-16 02:21:50', NULL, '0012141'),
+	(39, 91, 'Oscar Maydon Perez', 'zona 11 2 calle 6-8', 'oscarmaydon@mail.com', '35315577', 'A', 'licencias/F2qSsdqTOJistCpsTOkX64xqBqxd0jJc5g64qrSi.pdf', 'fotos_piloto/ggW4n3gJHuWDZdkFDygAMWB1tXMs3bhM0ZacjZ3x.jpg', 'dpi_pilotos/Cubddn5ApEh5u7UNZwJGtPBqJl5c11fcKc19Ojuc.jpg', '2024-08-14', '2024-08-30', 'antecedentes_penales/H138ZIBDYKWDVHHVWLyn7TcaqRrZNxQKYB2gGYXw.pdf', 'antecedentes_policiacos/YeDmD051MVDcj9FoHSEWqDdFBbMD3G8eNvN3SPPE.pdf', 'renas/0WcCmObO1e1VaU617tsc8rjzaYR9POe6rqHv8GMn.pdf', 'boleto_ornato/KDtbOBe5Db0cKokQuuFZNx4mzW3db81L3vfdHQ00.pdf', 31, '2024-08-16 02:28:17', '2024-08-16 02:28:17', NULL, '00121214'),
+	(40, 92, 'Kendrick Lamar', 'zona 1 LA 8', 'kendricklamar@mail.com', '3211154', 'B', 'licencias/jepI65Q60f84oCwKvtz3Ko4dw6WSuSuyIHPjkWUI.pdf', 'fotos_piloto/iVuFTLUPp6WgeE0TieTJDuVaZWH1V8uTkJqQpceE.jpg', 'dpi_pilotos/Crw7jZZzC7kFugdZdrZZYAYCvzUdWteiUoOIbF5W.png', '2023-09-16', '2025-09-16', 'antecedentes_penales/F7eJRUxzagxJHnUTSUr6QAqvAi3LdKEVuLBVEyyU.pdf', 'antecedentes_policiacos/todbGCcvtLti7S1CkWcxlJYDUAjJUbktIlrIygZJ.pdf', 'renas/eGm4eYmNcfOBV2pLlhSBNQ2NVCEEQyt1NDXtnMQr.pdf', 'boleto_ornato/icZ58pI8fzlQnUYjGONHrGnAgzgRuFbE3PIM7Qf1.pdf', 32, '2024-08-16 02:51:28', '2024-08-16 02:51:28', NULL, '12312300');
 
 -- Volcando estructura para tabla transportes.documentos
 CREATE TABLE IF NOT EXISTS `documentos` (
@@ -2287,20 +2430,19 @@ CREATE TABLE IF NOT EXISTS `propios` (
   PRIMARY KEY (`id`),
   KEY `propios_vehi_id_foreign` (`vehi_id`),
   CONSTRAINT `propios_vehi_id_foreign` FOREIGN KEY (`vehi_id`) REFERENCES `vehi` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.propios: ~10 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.propios: ~9 rows (aproximadamente)
 INSERT INTO `propios` (`id`, `nombre_propietario`, `dpi_propietario`, `nit_propietario`, `telefono_propietario`, `correo_propietario`, `direccion_fiscal`, `numero_vehiculos_asociados`, `vehiculos_asociados`, `nombre_empresa`, `nit_empresa`, `created_at`, `updated_at`, `vehi_id`) VALUES
-	(76, 'Jorge Khalid', 'dpi_propietario/QkAlwDgTFVxlkoSsXLfcKm9deO0PQrOXMcTfZpGh.pdf', 'CF', '7777774', 'jorgek@gmail.com', 'zona 1 calle 5 8', 3, '["11","12","13"]', NULL, NULL, '2024-06-27 22:52:24', '2024-06-27 22:52:24', NULL),
-	(77, 'Francisco Morales', 'dpi_propietario/vO9pXptVcf3yt5piU5pqOz7P2hHMtqAPzgEihFo7.pdf', 'CF', '45841020', 'franciscom@mail.com', 'zona 4 1 calle 6-90 a', 2, '["14","15"]', NULL, NULL, '2024-06-27 23:08:36', '2024-06-28 02:18:56', NULL),
-	(81, 'Emanuel Franco', 'dpi_propietario/bHUCzc3KQO2FHYhurne1AVEAf61MRQMUN2jcgBWY.pdf', 'CF', '52901511', 'emanuelfranco@mail.com', 'zona 4 1 calle 6-90', 2, '["15","16"]', 'Municipalidad', '5255847', '2024-07-04 22:36:45', '2024-07-04 22:36:45', NULL),
 	(82, 'Walter Puac', 'dpi_propietario/tqZOg3tXT70UN2NaHaLOilgE5AfmRPx3qcqx3fpF.pdf', 'CF', '48554151', 'walterpuac@mail.com', 'Zona 7 calle 8 - 10', 1, '["19"]', NULL, NULL, '2024-07-11 23:25:03', '2024-07-11 23:25:03', NULL),
 	(83, 'Nelson Ruano', 'dpi_propietario/P0WJqw2u0ikl6X2ZcNQAbOaR2CSKVJcRdFPXV6Wv.pdf', 'CF', '47410021', 'nelsonruano@mail.com', 'Zona 17 calle 8 - 10', 1, '["15"]', NULL, NULL, '2024-07-12 03:32:25', '2024-07-12 03:32:25', NULL),
 	(84, 'Manuel Gonzalez', 'dpi_propietario/ey5CUJpPvdmQOEksWHt1lboHasX77r9jKrW3d6eQ.pdf', 'CF', '4889455', 'manuelgonzales@mail.com', 'zona 1 12-2 calle', 2, '["9","17"]', 'Ferreteria', '15545', '2024-07-12 03:44:34', '2024-07-12 03:44:34', NULL),
 	(86, 'Francisc Tambriz', 'dpi_propietario/Exb7dDLJcF3DJhfpYJgm08uVPoZeB8IfXunGBqXB.pdf', 'CF', '31354098', 'franciscotambriz@mail.com', 'Zona 4 5ta calle la soledad', 1, '["20"]', 'Municipalidad', 'CF', '2024-07-16 04:41:55', '2024-07-19 22:41:23', NULL),
 	(88, 'Adam Perez', 'dpi_propietario/Cu6RKnTHFAhiwSXwWZ0sv3MVFsvyELK6AMmDDUI5.pdf', '124566k', '31412555', 'adamperez@mail.com', 'Zona 2 colonia el paraiso 5-B', 1, '["23"]', NULL, NULL, '2024-07-22 21:07:14', '2024-07-22 21:07:14', NULL),
 	(89, 'Cristobal Pac Lepe', 'dpi_propietario/CnUBOpbZRNL6OyPvQjAcDsuQT3GfKhK9NhhlPokZ.pdf', 'CF', '31251109', 'cristobalpac@mail.com', 'Zona 11 cale a 4-9', 1, '["17"]', NULL, NULL, '2024-08-13 20:17:36', '2024-08-13 20:18:19', NULL),
-	(90, 'EJEMPLO PEREZ', 'dpi_propietario/TcZGIPsDG77jaxfCx1COeo9fWrrhUvzqL3A4rckP.pdf', 'CF', '45444111', 'ejemploperez@mail.com', 'Zona 8 calle a 10-1', 1, '["27"]', NULL, NULL, '2024-08-13 21:19:15', '2024-08-13 21:19:15', NULL);
+	(90, 'EJEMPLO PEREZ', 'dpi_propietario/TcZGIPsDG77jaxfCx1COeo9fWrrhUvzqL3A4rckP.pdf', 'CF', '45444111', 'ejemploperez@mail.com', 'Zona 8 calle a 10-1', 1, '["27"]', NULL, NULL, '2024-08-13 21:19:15', '2024-08-13 21:19:15', NULL),
+	(91, 'Ivan Cornejo', 'dpi_propietario/IHNGksLkitfIe1b7m4IFU1uq7NnPOUZ0EGFXpeea.pdf', 'CF', '45455005', 'ivancornejo@mail.com', 'ZONA 2 3-5 CALLE', 1, '["31"]', NULL, NULL, '2024-08-16 02:26:08', '2024-08-16 02:26:08', NULL),
+	(92, 'David Schuls', 'dpi_propietario/pirDxitxFYptKZcYTQpgfFyZpjc2FPetXMOnoVqQ.pdf', 'CF', '45455005', 'davidschuls@mail.com', 'zona 12 ciudad capital', 1, '["32"]', 'ABC SA', 'CF', '2024-08-16 02:43:43', '2024-08-16 02:43:43', NULL);
 
 -- Volcando estructura para tabla transportes.propios_vehiculos
 CREATE TABLE IF NOT EXISTS `propios_vehiculos` (
@@ -2314,16 +2456,12 @@ CREATE TABLE IF NOT EXISTS `propios_vehiculos` (
   KEY `propios_vehiculos_vehi_id_foreign` (`vehi_id`),
   CONSTRAINT `propios_vehiculos_propios_id_foreign` FOREIGN KEY (`propios_id`) REFERENCES `propios` (`id`) ON DELETE CASCADE,
   CONSTRAINT `propios_vehiculos_vehi_id_foreign` FOREIGN KEY (`vehi_id`) REFERENCES `vehi` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.propios_vehiculos: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.propios_vehiculos: ~2 rows (aproximadamente)
 INSERT INTO `propios_vehiculos` (`id`, `propios_id`, `vehi_id`, `created_at`, `updated_at`) VALUES
-	(15, 76, 12, NULL, NULL),
-	(18, 77, 14, NULL, NULL),
-	(29, 84, 17, NULL, NULL),
-	(36, 88, 23, NULL, NULL),
-	(37, 89, 17, NULL, NULL),
-	(39, 90, 27, NULL, NULL);
+	(40, 91, 31, NULL, NULL),
+	(41, 92, 32, NULL, NULL);
 
 -- Volcando estructura para tabla transportes.roles
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -2393,9 +2531,43 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.sessions: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.sessions: ~3 rows (aproximadamente)
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('s8AFugyVX8VOR0m2Hw2jZV3X06vDFrPYnHT5yBBJ', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNHQyYzNJUkNRR0IyNGdSRWRacXhRRWNTeWtWUGkxcDJ2MG94NXJUWSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoiYXV0aCI7YToxOntzOjIxOiJwYXNzd29yZF9jb25maXJtZWRfYXQiO2k6MTcyMzczMjI2NTt9czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkRlNQWi5IUnVMZUtUQmRBVEtxUWllTzVWdWpLbVBXR1lrZU5LNzBkellvZHE1bUo5NkF6Si4iO30=', 1723732265);
+	('ptoCFKZTIHXhsmBaVQU2kjtdFOwYf7OrEPqd77wN', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoid1E4U3RlMHNvQTdFR1llakliZHo1eHVBUGxNdFp4YnppRjNQTWMycCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ydXRhcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzIzNzU1MjUxO31zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRGU1BaLkhSdUxlS1RCZEFUS3FRaWVPNVZ1akttUFdHWWtlTks3MGR6WW9kcTVtSjk2QXpKLiI7fQ==', 1723755273),
+	('W0QmzxZKH7CzkW3Z2RYwjhJrJ6BbLevx9MSmqiZc', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoidnFzeUNiWnBuU1VCQ3pKc1l5TlhrR3BoR2hXSEgwdnpkcUF3dElZRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jYXJkcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czo0OiJhdXRoIjthOjE6e3M6MjE6InBhc3N3b3JkX2NvbmZpcm1lZF9hdCI7aToxNzIzODIwMzI5O31zOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRGU1BaLkhSdUxlS1RCZEFUS3FRaWVPNVZ1akttUFdHWWtlTks3MGR6WW9kcTVtSjk2QXpKLiI7fQ==', 1723824374),
+	('X84ViVEsMT539EspkSc2Xo8v7EV9xgyKEeq9GkDj', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:129.0) Gecko/20100101 Firefox/129.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiR0E0Y1V5Sll4dWJOMWZqekRQNjBVcjFlVW5KOER3VFZMVk5YSU8weiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NDoiYXV0aCI7YToxOntzOjIxOiJwYXNzd29yZF9jb25maXJtZWRfYXQiO2k6MTcyMzc1NTg5MDt9czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkRlNQWi5IUnVMZUtUQmRBVEtxUWllTzVWdWpLbVBXR1lrZU5LNzBkellvZHE1bUo5NkF6Si4iO30=', 1723755890);
+
+-- Volcando estructura para tabla transportes.tipo_vehi
+CREATE TABLE IF NOT EXISTS `tipo_vehi` (
+  `id_tipo_vehiculo` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `tipo_vehiculo` varchar(191) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id_tipo_vehiculo`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Volcando datos para la tabla transportes.tipo_vehi: ~20 rows (aproximadamente)
+INSERT INTO `tipo_vehi` (`id_tipo_vehiculo`, `tipo_vehiculo`, `created_at`, `updated_at`) VALUES
+	(1, 'TAXIS', NULL, NULL),
+	(2, 'FLETES', NULL, NULL),
+	(3, 'ESCOLARES', NULL, NULL),
+	(4, 'URBANOS', NULL, NULL),
+	(5, 'AUTOMÓVIL', NULL, NULL),
+	(6, 'AUTOBÚS', NULL, NULL),
+	(7, 'BUS', NULL, NULL),
+	(8, 'CAMIÓN', NULL, NULL),
+	(9, 'CAMIONCITO', NULL, NULL),
+	(10, 'CAMIONETILLA', NULL, NULL),
+	(11, 'COASTER', NULL, NULL),
+	(12, 'COMBI', NULL, NULL),
+	(13, 'EMPRESA PRIVADA', NULL, NULL),
+	(14, 'MICROBUSES', NULL, NULL),
+	(15, 'ONG', NULL, NULL),
+	(16, 'PICK UP', NULL, NULL),
+	(17, 'TAXIS', NULL, NULL),
+	(18, 'TURÍSTICOS', NULL, NULL),
+	(19, 'URBANOS', NULL, NULL),
+	(20, 'OTRO', NULL, NULL);
 
 -- Volcando estructura para tabla transportes.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -2416,9 +2588,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_roles_foreign` (`roles`),
   CONSTRAINT `users_roles_foreign` FOREIGN KEY (`roles`) REFERENCES `roles` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.users: ~28 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.users: ~38 rows (aproximadamente)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`, `role`, `roles`) VALUES
 	(1, 'admin123@gmail.com', 'admin123@gmail.com', NULL, '$2y$10$FSPZ.HRuLeKTBdATKqQieO5VujKmPWGYkeNK70dzYodq5mJ96AzJ.', NULL, NULL, NULL, NULL, '2024-02-08 22:19:15', '2024-02-08 22:19:15', 'superadmin', 4),
 	(2, 'admin123@mail.com', 'admin123@mail.com', NULL, '$2y$10$FSPZ.HRuLeKTBdATKqQieO5VujKmPWGYkeNK70dzYodq5mJ96AzJ.', NULL, NULL, NULL, NULL, '2024-02-13 22:05:07', '2024-02-13 22:05:07', 'admin', 1),
@@ -2451,7 +2623,13 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `tw
 	(30, 'Estefan Lopez', 'estefan@mail.com', NULL, '$2y$10$sjT/DMej1Dkey/WC5.dpZ.XAv8P9Wyha5icqyAqfcxc9cdU1rxacK', NULL, NULL, NULL, NULL, '2024-08-13 23:41:54', '2024-08-13 23:41:54', 'piloto', 3),
 	(31, 'Devil Eyes', 'devil@mail.com', NULL, '$2y$10$gRJ41r2IB6Ki6WCVDZM03O7YW4u.ltOgypqPw6pu3aFP6muKHsQci', NULL, NULL, NULL, NULL, '2024-08-13 23:49:53', '2024-08-13 23:49:53', 'piloto', 3),
 	(32, 'Future Boom', 'future@mail.com', NULL, '$2y$10$60Dj3IPIlba/mv3vZWpufu.LvgtYodaRgoamEtlxBGwnIwqWFk0H.', NULL, NULL, NULL, NULL, '2024-08-13 23:56:42', '2024-08-13 23:56:42', 'piloto', 3),
-	(33, 'b', 'b@mail.com', NULL, '$2y$10$gkJ9taMwhIQoQf7amGLrXuBUQTCBHnKou3kqLYYXRIw22oVWgOoqi', NULL, NULL, NULL, NULL, '2024-08-15 20:26:44', '2024-08-15 20:26:44', 'piloto', 3);
+	(33, 'b', 'b@mail.com', NULL, '$2y$10$gkJ9taMwhIQoQf7amGLrXuBUQTCBHnKou3kqLYYXRIw22oVWgOoqi', NULL, NULL, NULL, NULL, '2024-08-15 20:26:44', '2024-08-15 20:26:44', 'piloto', 3),
+	(35, 'Fabricio Chanquin', 'fabricio@mail.com', NULL, '$2y$10$85CBKfaANq4tVnr3xLTCVun/NNSORR5FbjI3ZNpf07USRPQLsUzje', NULL, NULL, NULL, NULL, '2024-08-15 23:32:01', '2024-08-15 23:32:01', 'piloto', 3),
+	(36, 'Estevan Plazola', 'estevan@mail.com', NULL, '$2y$10$3z2CHd5UFStamKApSjhKBOr/iAgf6jbrQHcVdv/NX9R/jjnepINdW', NULL, NULL, NULL, NULL, '2024-08-16 02:21:50', '2024-08-16 02:21:50', 'piloto', 3),
+	(37, 'Ivan Cornejo', 'ivancornejo@mail.com', NULL, '$2y$10$6ne.4f1WUeJQBZOhtRKfUeOsH44lpPh8Vot6e/gOeUVwE5SNM8aoi', NULL, NULL, NULL, NULL, '2024-08-16 02:26:08', '2024-08-16 02:26:08', 'propietario', 2),
+	(38, 'Oscar Maydon Perez', 'oscarmaydon@mail.com', NULL, '$2y$10$6iz8UcO.FEEbVrVPesosGe6oi0KGvb6hcTsxJKj6RibYB7j3hIm8.', NULL, NULL, NULL, NULL, '2024-08-16 02:28:17', '2024-08-16 02:28:17', 'piloto', 3),
+	(39, 'David Schuls', 'davidschuls@mail.com', NULL, '$2y$10$PJU6OmDJa.Zl7SV9n.6/quwfQ72U4cYcbeUzgs/I1zy02R3AEwvAu', NULL, NULL, NULL, NULL, '2024-08-16 02:43:43', '2024-08-16 02:43:43', 'propietario', 2),
+	(40, 'Kendrick Lamar', 'kendricklamar@mail.com', NULL, '$2y$10$mBDYTeNuBO3L5hB2IjksK.8eRaNYsz8xtJAc7HrHHazyM3WcSLC7e', NULL, NULL, NULL, NULL, '2024-08-16 02:51:28', '2024-08-16 02:51:28', 'piloto', 3);
 
 -- Volcando estructura para tabla transportes.vehi
 CREATE TABLE IF NOT EXISTS `vehi` (
@@ -2460,28 +2638,24 @@ CREATE TABLE IF NOT EXISTS `vehi` (
   `placa_vehi` varchar(191) NOT NULL,
   `tarjeta_circulacion` varchar(191) NOT NULL,
   `titulo_propiedad` varchar(191) NOT NULL,
-  `tipo_vehi` varchar(191) NOT NULL,
+  `tipo_vehi` bigint(20) unsigned NOT NULL DEFAULT 0,
   `numero_ruta_id` bigint(20) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `vehi_numero_ruta_id_foreign` (`numero_ruta_id`),
+  KEY `fk_tipo_vehi` (`tipo_vehi`),
+  CONSTRAINT `fk_tipo_vehi` FOREIGN KEY (`tipo_vehi`) REFERENCES `tipo_vehi` (`id_tipo_vehiculo`),
   CONSTRAINT `vehi_numero_ruta_id_foreign` FOREIGN KEY (`numero_ruta_id`) REFERENCES `rutas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla transportes.vehi: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla transportes.vehi: ~5 rows (aproximadamente)
 INSERT INTO `vehi` (`id`, `nombre_vehi`, `placa_vehi`, `tarjeta_circulacion`, `titulo_propiedad`, `tipo_vehi`, `numero_ruta_id`, `created_at`, `updated_at`) VALUES
-	(6, 'ambulancia', 'P8928A', 'tarjetas_circulacion/o46avz4OFJjV3xIk9uTNbMytbhkX1CLydSJNi3gD.pdf', 'titulos_propiedad/oKOUpmFxZFPLepzC0c9Kd31ehBAKhvRGmE3ce9Wz.pdf', 'SERVICIO', 1, '2024-02-14 22:52:04', '2024-02-14 22:52:04'),
-	(10, 'ESCUELA Z1', 'M898001', 'tarjetas_circulacion/KeB0h7Cll2tGYeGdypEg8V5ozjdP4wD6yvejJ3ND.pdf', 'titulos_propiedad/KKsyqRT31ibXIbGuJmFay1XGUSFGt12wyqFO8PO5.pdf', 'BUS', 3, '2024-02-20 02:57:43', '2024-02-20 02:57:43'),
-	(12, 'MICROBUS', 'P1078B', 'tarjetas_circulacion/qiHzRPQSEtbNA3rFhmoULTuAwtJSQBFJGDV3pBi9.pdf', 'titulos_propiedad/mH1aIV9hsHIMwON1EHmOfQqWLsQOSYItYSULahQR.pdf', 'BUS', 1, '2024-03-18 21:36:41', '2024-03-18 21:36:41'),
-	(14, 'Trigal100', 'P784422', 'tarjetas_circulacion/CBvER4MvW12ad3wBlGunzda0dpZjXHOs37iCQzdS.pdf', 'titulos_propiedad/stQOMDVLgGhtC66FSjWgbiUM20KswvE61hhjIWPq.pdf', 'BUS', 2, '2024-03-20 02:39:07', '2024-03-20 03:44:30'),
-	(15, 'TUCTUC', 'M898001', 'tarjetas_circulacion/zWi9J8HivO5qixfbv1x1WDx8SBGTJElaYYbkxGBK.pdf', 'titulos_propiedad/dAA4XLxySRIS2DEHbaKwkCjmrKxBIy705B2OidB8.pdf', 'PERSONAL', 2, '2024-03-26 02:53:11', '2024-03-26 02:53:11'),
-	(16, 'MOTOTAXI', 'M705APL', 'tarjetas_circulacion/Wjb5uiulWC0pmg9A5XM0pi6Jheyf7JrrJHo6XUrq.pdf', 'titulos_propiedad/Qwr1bCMKgglgiyy2rZdikifV8qvIpDk5wTu58wvI.pdf', 'MOTO', 1, '2024-06-25 03:57:00', '2024-06-25 03:57:00'),
-	(17, 'YAMAHA', 'M7056Q', 'tarjetas_circulacion/geGkZiCnWcSoATiP8CCyLkg07OkWy0Wc18cTvjYp.pdf', 'titulos_propiedad/pWvv1gyTqLBT8smYhxllTJojmeU9XqAOAFk1skI2.pdf', 'MOTO', 3, '2024-06-27 22:27:35', '2024-06-27 22:27:35'),
-	(19, 'TOYOTA HILUX', 'P40521A', 'tarjetas_circulacion/pajmioziUQyF9Vlio8w5WDVvzhCLdJNhmCBiabLD.pdf', 'titulos_propiedad/iqBA8RUx1t5AEWTJLjfDha48QJ2xe5BAKDdvFSgv.pdf', 'PICKUP', 10, '2024-07-03 03:08:15', '2024-07-03 03:08:15'),
-	(23, 'Mazda BT50 EEMQ', 'P18Q201', 'tarjetas_circulacion/gB3zxa3fYkMoxCFCr1wdSGTRjZdwRVNXXr8Efi7d.pdf', 'titulos_propiedad/UHCKPMCDhEZuZtlXd5fprC9HUEdRiLo1dr17QDeZ.pdf', 'PICKUP', 2, '2024-07-22 21:04:45', '2024-07-22 21:04:45'),
-	(26, 'Ford Camioneta R14', 'P2258M', 'tarjetas_circulacion/A6QptKdfQss6opsxtQbYMiedwT08xRaAMD6A3nde.pdf', 'titulos_propiedad/KqBpjbjUeznfANRZH8qORqbNBghdnhYyj4m24yzs.pdf', 'BUS', 12, '2024-08-12 23:53:01', '2024-08-12 23:53:01'),
-	(27, 'CUESTA BLANCA', 'P9292832', 'tarjetas_circulacion/m3AeJ2WcYr0PfhzlX08lTPALlNcR9LFcVqQmXJFI.pdf', 'titulos_propiedad/3FDiwdgLBBTdSAkRaRlb7stzjH1NEtoeY44s5Uir.pdf', 'MICROBUS', 13, '2024-08-13 21:16:23', '2024-08-13 21:16:23');
+	(28, 'LAS ROSAS', 'P212a', 'tarjetas_circulacion/8In1PTOnbR0QBYwnXN4xqjBJ4e98SZzvNboImRWH.pdf', 'titulos_propiedad/SqlfivinqgQbciE7PEzbJT9i8fP8CEMUnJ93U3Q7.pdf', 3, 3, '2024-08-15 23:26:34', '2024-08-15 23:26:34'),
+	(29, 'Ford Camioneta R14', 'M80441Q', 'tarjetas_circulacion/mqTRqVILwuqhsgzoN6oqKSfaVnkR2TvFCmeWC7I1.pdf', 'titulos_propiedad/KUyaC9OaJi7upc7AIoBHXwdD0qQYWAIG8zTb5vKf.pdf', 4, 2, '2024-08-15 23:27:09', '2024-08-15 23:27:09'),
+	(30, 'SAN JUAN', 'P901AS', 'tarjetas_circulacion/fAtsJf1frFUhYTlR8R0q6RpGiSLYbwytanY4oUDD.pdf', 'titulos_propiedad/6YId8BEBghcE7zXEQTxQBXzk5o73fAozaAld0K5X.pdf', 4, 2, '2024-08-16 02:18:56', '2024-08-16 02:18:56'),
+	(31, 'ROTONDA MICRO', 'P0998N', 'tarjetas_circulacion/9rnJy1RwXgUbZ3f5GmPPNwNnBTZtSMht7byNXZal.pdf', 'titulos_propiedad/t2P5hfHn2tvnfSpCnPfi7knFqbT4C3TUZF09YFRM.pdf', 3, 10, '2024-08-16 02:19:49', '2024-08-16 02:19:49'),
+	(32, 'LA ESPERANZA MICRO', 'P0998N1', 'tarjetas_circulacion/AKvKd4sZE0hr6pa2fD23lJxCDT6DRACXG7qKBme6.pdf', 'titulos_propiedad/OQLJyxXFemT1RQVeKVUvGoF8qMBUeIwDDVPosrw8.pdf', 14, 13, '2024-08-16 02:42:30', '2024-08-16 02:42:30');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
