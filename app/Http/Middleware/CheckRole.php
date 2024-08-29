@@ -16,12 +16,13 @@ class CheckRole
      * @param  string|null  $role
      * @return mixed
      */
-    public function handle($request, Closure $next, $role)
+    public function handle($request, Closure $next, ...$roles)
     {
-        if (!Auth::check() || Auth::user()->role !== $role) {
-            return redirect()->route('home')->with('error', 'ACCESO NO PERMITIDO A BITACORA');
+        // Verifica si el usuario está autenticado y si su rol está en la lista de roles permitidos
+        if (!Auth::check() || !in_array(Auth::user()->role, $roles)) {
+            return redirect()->route('home')->with('error', 'ACCESO NO PERMITIDO');
         }
-        
+    
         return $next($request);
     }
 }

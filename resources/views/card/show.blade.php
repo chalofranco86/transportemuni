@@ -26,11 +26,13 @@
 
                 <!-- Botón Solicitar -->
                 @if($card->estado_card != 'SOLICITADA')
-                    <form action="{{ route('cards.solicitar', $card->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('PATCH')
-                        <button type="submit" class="btn btn-warning">Solicitar</button>
-                    </form>
+                    @if(in_array(auth()->user()->role, ['superadmin', 'admin', 'operador']))
+                        <form action="{{ route('cards.solicitar', $card->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-warning">Solicitar</button>
+                        </form>
+                    @endif
                 @else
                     <button type="button" class="btn btn-secondary" disabled>Solicitado</button>
                 @endif

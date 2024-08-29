@@ -64,6 +64,9 @@ Route::middleware(['auth', 'checkrole:admin'])->group(function () {
     Route::get('/bitacora', [BitacoraController::class, 'showReport'])->name('bitacora');
 });
 
+Route::middleware(['auth', 'checkrole:superadmin,admin,operador'])->group(function () {
+    Route::get('/cards/solicitudes', [CardController::class, 'solicitudes'])->name('cards.solicitudes');
+});
 
 Route::middleware([
     'auth:sanctum',
