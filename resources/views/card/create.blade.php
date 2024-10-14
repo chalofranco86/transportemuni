@@ -35,11 +35,24 @@
 <script>
     document.getElementById('cardsForm').addEventListener('submit', function(event) {
         event.preventDefault();
+
+        // Define the maximum file size (3MB)
+        var maxSize = 3 * 1024 * 1024;
+
+        // Get all file input elements
+        var fileInputs = document.querySelectorAll('input[type="file"]');
+        for (var i = 0; i < fileInputs.length; i++) {
+            if (fileInputs[i].files[0] && fileInputs[i].files[0].size > maxSize) {
+                alert('El archivo ' + fileInputs[i].name + ' es demasiado grande. El tamaño máximo permitido es de 3MB.');
+                return;
+            }
+        }
+
         var nombreCard = document.querySelector('input[name="nombre_piloto"]').value;
         var direccionCard = document.querySelector('input[name="direccion_piloto"]').value;
         var correoCard = document.querySelector('input[name="correo_piloto"]').value;
         var telefonoCard = document.querySelector('input[name="telefono_piloto"]').value;
-        var tipoLicencia = document.querySelector('input[name="tipo_licencia"]').value;
+        var tipoLicencia = document.querySelector('select[name="tipo_licencia"]').value;
         var licencia = document.querySelector('input[name="licencia"]').value;
         var fotoPiloto = document.querySelector('input[name="foto_piloto"]').value;
         var dpiPiloto = document.querySelector('input[name="dpi_piloto"]').value;
