@@ -340,6 +340,12 @@ return [
         ['header' => 'labels'],
         ['header' => ' '],
         [
+            'text' => 'Solicitudes',
+            'url' => 'cards/solicitudes',
+            'icon'=> 'fas fa-fw fa-lock',
+            'icon_color'=> 'yellow',
+        ],
+        [
             'text' => 'Bitacora',
             'url' => 'bitacora/report',
             'icon'=> 'fas fa-fw fa-lock',
