@@ -9,7 +9,7 @@
         <div class="float-right">
             @csrf
             @method('CREATE')
-            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
+            @if (in_array(auth()->user()->role, ['superadmin', 'admin']	))
             <a href="{{ route('rutas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                 {{ __('NUEVO') }}
             </a>
@@ -30,7 +30,7 @@
             <tr>
                 <th>ID RUTA</th>
                 <th>NOMBRE</th>
-                <th>RUTA</th>
+                <th>NO. RUTA</th>
                 <th>ACCIONES</th>
 
             </tr>

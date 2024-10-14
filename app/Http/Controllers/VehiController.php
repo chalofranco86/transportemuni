@@ -87,7 +87,8 @@ class VehiController extends Controller
     {
         $vehi = new Vehi();
         $tiposVehi = TipoVehi::pluck('tipo_vehiculo', 'id_tipo_vehiculo'); // Array asociativo
-        return view('vehi.create', compact('vehi', 'tiposVehi'));
+        $rutas = \App\Models\Ruta::pluck('numero_ruta', 'id'); // Obtener las rutas disponibles
+        return view('vehi.create', compact('vehi', 'tiposVehi', 'rutas'));
     }
     
     
@@ -148,11 +149,11 @@ class VehiController extends Controller
      */
     public function edit($id)
     {
-        // Encuentra el vehículo por su ID
         $vehi = Vehi::find($id);
-    
-        // Retorna la vista de edición con los datos del vehículo
-        return view('vehi.edit', compact('vehi'));
+        $rutas = \App\Models\Ruta::pluck('numero_ruta', 'id'); // Obtener las rutas disponibles
+        $tiposVehi = TipoVehi::pluck('tipo_vehiculo', 'id_tipo_vehiculo'); // Obtener los tipos de vehículos disponibles
+        
+        return view('vehi.edit', compact('vehi', 'rutas', 'tiposVehi'));
     }
     
 

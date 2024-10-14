@@ -32,8 +32,8 @@
             {!! $errors->first('tipo_vehi', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('numero_ruta_id') }}
-            {{ Form::text('numero_ruta_id', $vehi->numero_ruta_id, ['class' => 'form-control' . ($errors->has('numero_ruta_id') ? ' is-invalid' : ''), 'placeholder' => 'Numero Ruta Id']) }}
+            {{ Form::label('numero_ruta_id', 'Número de Ruta') }}
+            {{ Form::select('numero_ruta_id', $rutas, $vehi->numero_ruta_id, ['class' => 'form-control' . ($errors->has('numero_ruta_id') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona una ruta']) }}
             {!! $errors->first('numero_ruta_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 

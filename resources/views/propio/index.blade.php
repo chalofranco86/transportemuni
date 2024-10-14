@@ -52,8 +52,8 @@
                                         <th>Telefono Propietario</th>
                                         <th>Correo Propietario</th>
                                         <th>Direccion Fiscal</th>
-                                        <th>Numero Vehiculos Asociados</th>
                                         <th>Vehiculos Asociados</th>
+                                        <th>ID Vehiculo Asociado</th>
                                         <th>Nombre Empresa</th>
                                         <th>Nit Empresa</th>
                                         <th>Acciones</th>

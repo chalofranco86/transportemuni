@@ -8,7 +8,7 @@
     <div class="float-right">
     @csrf
     @method('CREATE')
-    @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']	))
+    @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'operador']	))
         <a href="{{ route('cards.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
             {{ __('NUEVO') }}
         </a>
