@@ -44,6 +44,8 @@ Route::middleware(['auth', 'log.bitacora'])->group(function () {
     Route::resource('documentos', App\Http\Controllers\DocumentoController::class);
     Route::resource('rutas', RutaController::class);
     Route::resource('vehis', VehiController::class);
+    Route::delete('/vehis/eliminar/{id}', [VehiController::class, 'eliminar'])->name('vehis.eliminar');
+    Route::delete('/vehis/{vehis}', [PropioController::class, 'destroy'])->name('vehis.destroy');
     Route::resource('cards', CardController::class);
     Route::patch('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

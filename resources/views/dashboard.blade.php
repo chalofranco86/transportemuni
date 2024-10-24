@@ -7,12 +7,26 @@
 @stop
 
 @section('content')
-
-    <img src="{{ asset('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo">
+    <div class="responsive-container">
+        <img src="{{ asset('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Logo" class="responsive-image">
+    </div>
 @stop
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .responsive-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .responsive-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+    </style>
 @stop
 
 @section('js')

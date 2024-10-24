@@ -26,8 +26,8 @@ class BitacoraController extends Controller
         if (Auth::user()->cannot('view', Bitacora::class)) {
             return redirect()->back()->with('error', 'ACCESO NO PERMITIDO A BITACORA');
         }
-
-        $bitacora = Bitacora::all();
+    
+        $bitacora = Bitacora::with('user')->get();
         return view('bitacora.report', compact('bitacora'));
     }
 }

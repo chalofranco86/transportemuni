@@ -84,6 +84,6 @@ class Card extends Model
     
     public function propietario()
     {
-        return $this->belongsTo('App\Models\User', 'propietario_id');
+        return $this->belongsTo('App\Models\Propios', 'propietario_id');
     }
 }

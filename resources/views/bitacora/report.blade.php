@@ -23,7 +23,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>User ID</th>
+                <th>Usuario</th>
                 <th>Descripción</th>
                 <th>Fecha de Creación</th>
             </tr>
@@ -32,7 +32,7 @@
             @foreach ($bitacora as $registro)
             <tr>
                 <td>{{ $registro->id }}</td>
-                <td>{{ $registro->user_id }}</td>
+                <td>{{ $registro->user->name }}</td>
                 <td>{{ $registro->descripcion }}</td>
                 <td>{{ $registro->created_at }}</td>
             </tr>

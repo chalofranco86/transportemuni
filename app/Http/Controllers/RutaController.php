@@ -164,4 +164,5 @@ class RutaController extends Controller
         return redirect()->route('rutas.index')
             ->with('success', 'Ruta deleted successfully');
     }
+
 }

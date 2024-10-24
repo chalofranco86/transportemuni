@@ -7,9 +7,9 @@
 @stop
 
 @section('content')
-    <div style="display: flex; align-items: center;">
-        <img src="{{ asset('vendor/adminlte/dist/img/cochegif.gif') }}" alt="Coche GIF" style="width: 1000px; height: auto; margin-right: 20px;">
-        <img src="{{ asset('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Transporte Logo" style="width: 1000px; height: auto;">
+    <div class="responsive-container">
+        <img src="{{ asset('vendor/adminlte/dist/img/cochegif.gif') }}" alt="Coche GIF" class="responsive-image">
+        <img src="{{ asset('vendor/adminlte/dist/img/transportelogo.jpeg') }}" alt="Transporte Logo" class="responsive-image">
     </div>
 
     @if (session('error'))
@@ -27,6 +27,25 @@
 
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
+    <style>
+        .responsive-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        .responsive-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 10px;
+        }
+        @media (min-width: 768px) {
+            .responsive-image {
+                max-width: 45%;
+            }
+        }
+    </style>
 @stop
 
 @section('js')

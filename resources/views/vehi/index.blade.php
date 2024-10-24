@@ -17,6 +17,18 @@
 @stop
 
 @section('content')
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
@@ -41,19 +53,23 @@
                     <td>{{ $vehi->tipo_vehi }}</td>
                     <td>{{ $vehi->numero_ruta_id }}</td>
                     <td>
-                    <form action="{{ route('vehis.destroy', $vehi->id) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']))
-                            <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}</a>
-                        @endif
-                        @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
-                            <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este vehículo?');">
-                                <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
-                            </button>
-                        @endif
-                    </form>
+                        <form action="{{ route('vehis.eliminar', $vehi->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin', 'propietario']))
+                                <a class="btn btn-sm btn-primary" href="{{ route('vehis.show', $vehi->id) }}">
+                                    <i class="fa fa-fw fa-eye"></i> {{ __('Ver') }}
+                                </a>
+                            @endif
+                            @if (in_array(auth()->user()->role, ['superadmin', 'admin']))
+                                <a class="btn btn-sm btn-success" href="{{ route('vehis.edit', $vehi->id) }}">
+                                    <i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}
+                                </a>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Está seguro de que desea eliminar este vehículo?');">
+                                    <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
+                                </button>
+                            @endif
+                        </form>
                     </td>
                 </tr>
             @endforeach

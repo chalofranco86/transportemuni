@@ -35,8 +35,8 @@
                 <th>Antecedentes Policiacos</th>
                 <th>Renas</th>
                 <th>Boleto Ornato</th>
-                <th>Numero Vehiculo Id</th>
-                <th>ID Propietario de Vehiculo</th>
+                <th>Vehiculo</th>
+                <th>Propietario de Vehiculo</th>
                 <th>No. Pago</th>
                 <th>Acciones</th>
                 <th>Estado</th>
@@ -60,7 +60,7 @@
                     <td>{{ $card->antecedentes_policiacos ? 'SI' : 'NO' }}</td>
                     <td>{{ $card->renas ? 'SI' : 'NO' }}</td>
                     <td>{{ $card->boleto_ornato ? 'SI' : 'NO' }}</td>
-                    <td>{{ $card->numero_vehiculo_id }}</td>
+                    <td>{{ $card->vehi->nombre_vehi }}</td>
                     <td>{{ $card->propietario_id }}</td>
                     <td>{{ $card->no_pago }}</td>
                     <td>

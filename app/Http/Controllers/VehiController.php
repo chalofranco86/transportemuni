@@ -6,6 +6,7 @@ use App\Models\Vehi;
 use App\Models\Card;
 use App\Models\Propio;
 use App\Models\TipoVehi;
+use App\Notifications\VehiEliminado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -232,4 +233,52 @@ public function update(Request $request, Vehi $vehi)
         }
     }
     
+    public function eliminar($id)
+    {
+        Log::info("Inicio de eliminación del vehículo con ID: {$id}");
+        DB::beginTransaction();
+        try {
+            $vehi = Vehi::findOrFail($id);
+            Log::info("Vehículo encontrado: {$vehi}");
+    
+            // Eliminar registros relacionados
+            $vehi->propios()->detach();
+            Log::info("Registros de propios_vehiculos eliminados para el vehículo con ID: {$id}");
+    
+            // Eliminar archivos relacionados
+            if ($vehi->tarjeta_circulacion && Storage::disk('public')->exists($vehi->tarjeta_circulacion)) {
+                Storage::disk('public')->delete($vehi->tarjeta_circulacion);
+                Log::info("Archivo tarjeta_circulacion eliminado para el vehículo con ID: {$id}");
+            }
+    
+            if ($vehi->titulo_propiedad && Storage::disk('public')->exists($vehi->titulo_propiedad)) {
+                Storage::disk('public')->delete($vehi->titulo_propiedad);
+                Log::info("Archivo titulo_propiedad eliminado para el vehículo con ID: {$id}");
+            }
+    
+            // Eliminar el vehículo
+            $vehi->delete();
+            Log::info("Vehículo con ID: {$id} eliminado exitosamente.");
+    
+            DB::commit();
+    
+            // Enviar notificación al usuario
+            $user = Auth::user();
+            $user->notify(new VehiEliminado($vehi));
+            Log::info("Notificación enviada al usuario.");
+    
+            return redirect()->route('vehis.index')
+                ->with('success', 'Vehículo eliminado exitosamente y notificación enviada.');
+        } catch (\Illuminate\Database\QueryException $e) {
+            DB::rollBack();
+            Log::error("Error al eliminar el vehículo con ID: {$id} - {$e->getMessage()}");
+            return redirect()->route('vehis.index')
+                ->with('error', 'No se puede eliminar el vehículo porque se está utilizando en otro módulo de la aplicación.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error("Error inesperado al eliminar el vehículo con ID: {$id} - {$e->getMessage()}");
+            return redirect()->route('vehis.index')
+                ->with('error', 'Ocurrió un error inesperado al intentar eliminar el vehículo.');
+        }
+    }
 }

@@ -60,6 +60,7 @@
                                                     @endif
                                                 </form>
                                             </td>
+
                                         </tr>
                                     @endforeach
         </tbody>    
